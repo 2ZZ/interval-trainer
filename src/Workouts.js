@@ -3,8 +3,8 @@
 export default function getWorkouts() {
   return [
     {
-      name: "Balanced 45-min Workout 1",
-      sets: 3,
+      name: "Balanced 1",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
@@ -23,8 +23,8 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Balanced 45-min Workout 2",
-      sets: 3,
+      name: "Balanced 2",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
@@ -40,8 +40,8 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Balanced 45-min Workout 3",
-      sets: 3,
+      name: "Balanced 3",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
@@ -63,8 +63,8 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Balanced 45-min Workout 4",
-      sets: 3,
+      name: "Balanced 4",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
@@ -86,8 +86,8 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "45-min Leg Workout 1",
-      sets: 2,
+      name: "Leg Workout 1",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
@@ -109,8 +109,8 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "45-min Leg Workout 2",
-      sets: 2,
+      name: "Leg Workout 2",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
@@ -126,8 +126,8 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "45-min Arm Workout 1 (Updated)",
-      sets: 2,
+      name: "Arm Workout 1",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
@@ -146,8 +146,8 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "45-min Arm Workout 2",
-      sets: 2,
+      name: "Arm Workout 2",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
@@ -169,8 +169,8 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "45-min Back Workout 1",
-      sets: 2,
+      name: "Back Workout 1",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
@@ -198,8 +198,8 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "45-min Back Workout 2 (Updated)",
-      sets: 2,
+      name: "Back Workout 2",
+      sets: 4,
       workTime: 40,
       restTime: 20,
       exercises: [
