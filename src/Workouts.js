@@ -127,7 +127,7 @@ export default function getWorkouts() {
     },
     {
       name: "Arm Workout 1",
-      sets: 5,
+      sets: 4,
       workTime: 30,
       restTime: 30,
       exercises: [
