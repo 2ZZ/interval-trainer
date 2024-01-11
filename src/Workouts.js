@@ -86,6 +86,74 @@ export default function getWorkouts() {
       ],
     },
     {
+      name: "Balanced 4 (series)",
+      sets: 1,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Dumbbell Skullcrusher / Tricep Extension",
+          video: "male-dumbbell-skullcrusher-front_hgKANkM.mp4",
+        },
+        {
+          name: "Dumbbell Skullcrusher / Tricep Extension",
+          video: "male-dumbbell-skullcrusher-front_hgKANkM.mp4",
+        },
+        {
+          name: "Dumbbell Skullcrusher / Tricep Extension",
+          video: "male-dumbbell-skullcrusher-front_hgKANkM.mp4",
+        },
+        {
+          name: "Dumbbell Skullcrusher / Tricep Extension",
+          video: "male-dumbbell-skullcrusher-front_hgKANkM.mp4",
+        },
+        {
+          name: "Lateral Raise",
+          video: "male-dumbbell-lateral-raise-front.mp4",
+        },
+        {
+          name: "Lateral Raise",
+          video: "male-dumbbell-lateral-raise-front.mp4",
+        },
+        {
+          name: "Lateral Raise",
+          video: "male-dumbbell-lateral-raise-front.mp4",
+        },
+        {
+          name: "Lateral Raise",
+          video: "male-dumbbell-lateral-raise-front.mp4",
+        },
+        {
+          name: "Dumbbell Rear Delt Fly",
+          video: "male-dumbbell-rear-delt-fly-front.mp4",
+        },
+        {
+          name: "Dumbbell Rear Delt Fly",
+          video: "male-dumbbell-rear-delt-fly-front.mp4",
+        },
+        {
+          name: "Dumbbell Rear Delt Fly",
+          video: "male-dumbbell-rear-delt-fly-front.mp4",
+        },
+        {
+          name: "Dumbbell Rear Delt Fly",
+          video: "male-dumbbell-rear-delt-fly-front.mp4",
+        },
+        { name: "Curls", video: "curls.mp4" },
+        { name: "Curls", video: "curls.mp4" },
+        { name: "Curls", video: "curls.mp4" },
+        { name: "Curls", video: "curls.mp4" },
+        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
+        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
+        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
+        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
+        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
+        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
+        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
+        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
+      ],
+    },
+    {
       name: "Leg Workout 1",
       sets: 4,
       workTime: 40,
