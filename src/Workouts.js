@@ -63,6 +63,74 @@ export default function getWorkouts() {
       ],
     },
     {
+      name: "Balanced 3 (series)",
+      sets: 1,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        { name: "Squat Press", video: "squat-press.mp4" },
+        { name: "Squat Press", video: "squat-press.mp4" },
+        { name: "Squat Press", video: "squat-press.mp4" },
+        { name: "Squat Press", video: "squat-press.mp4" },
+        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
+        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
+        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
+        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
+        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
+        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
+        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
+        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
+        {
+          name: "Left Hand Row",
+          video: "male-dumbbell-row-unilateral-side.mp4",
+        },
+        {
+          name: "Left Hand Row",
+          video: "male-dumbbell-row-unilateral-side.mp4",
+        },
+        {
+          name: "Left Hand Row",
+          video: "male-dumbbell-row-unilateral-side.mp4",
+        },
+        {
+          name: "Left Hand Row",
+          video: "male-dumbbell-row-unilateral-side.mp4",
+        },
+        {
+          name: "Right Hand Row",
+          video: "male-dumbbell-row-unilateral-side.mp4",
+        },
+        {
+          name: "Right Hand Row",
+          video: "male-dumbbell-row-unilateral-side.mp4",
+        },
+        {
+          name: "Right Hand Row",
+          video: "male-dumbbell-row-unilateral-side.mp4",
+        },
+        {
+          name: "Right Hand Row",
+          video: "male-dumbbell-row-unilateral-side.mp4",
+        },
+        {
+          name: "Dumbbell Stiff Legged Deadlift",
+          video: "male-barbell-stiff-leg-deadlift-front.mp4",
+        },
+        {
+          name: "Dumbbell Stiff Legged Deadlift",
+          video: "male-barbell-stiff-leg-deadlift-front.mp4",
+        },
+        {
+          name: "Dumbbell Stiff Legged Deadlift",
+          video: "male-barbell-stiff-leg-deadlift-front.mp4",
+        },
+        {
+          name: "Dumbbell Stiff Legged Deadlift",
+          video: "male-barbell-stiff-leg-deadlift-front.mp4",
+        },
+      ],
+    },
+    {
       name: "Balanced 4",
       sets: 4,
       workTime: 40,
