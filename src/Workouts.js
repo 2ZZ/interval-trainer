@@ -30,13 +30,16 @@ export default function getWorkouts() {
       exercises: [
         { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
         {
-          name: "Deadlift",
-          video: "male-barbell-snatch-grip-deadlift-front.mp4",
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
         },
         { name: "Press-up Row", video: "press-up-row.mp4" },
         { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
         { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
+        {
+          name: "Deadlift",
+          video: "male-barbell-snatch-grip-deadlift-front.mp4",
+        },
       ],
     },
     {
@@ -50,9 +53,33 @@ export default function getWorkouts() {
         { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
         { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
         {
-          name: "Deadlift",
-          video: "male-barbell-snatch-grip-deadlift-front.mp4",
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
         },
+        {
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
+        },
+        {
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
+        },
+        {
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
+        },
+        { name: "Press-up Row", video: "press-up-row.mp4" },
+        { name: "Press-up Row", video: "press-up-row.mp4" },
+        { name: "Press-up Row", video: "press-up-row.mp4" },
+        { name: "Press-up Row", video: "press-up-row.mp4" },
+        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
+        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
+        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
+        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
+        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
+        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
+        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
+        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
         {
           name: "Deadlift",
           video: "male-barbell-snatch-grip-deadlift-front.mp4",
@@ -65,22 +92,10 @@ export default function getWorkouts() {
           name: "Deadlift",
           video: "male-barbell-snatch-grip-deadlift-front.mp4",
         },
-        { name: "Press-up Row", video: "press-up-row.mp4" },
-        { name: "Press-up Row", video: "press-up-row.mp4" },
-        { name: "Press-up Row", video: "press-up-row.mp4" },
-        { name: "Press-up Row", video: "press-up-row.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
+        {
+          name: "Deadlift",
+          video: "male-barbell-snatch-grip-deadlift-front.mp4",
+        },
       ],
     },
     {
@@ -294,11 +309,14 @@ export default function getWorkouts() {
       workTime: 40,
       restTime: 20,
       exercises: [
-        { name: "Squat Press", video: "squat-press.mp4" },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
         {
           name: "Squat",
           video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
+        },
+        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
+        {
+          name: "Calf Raise",
+          video: "male-Dumbbells-dumbbell-calf-raise-side.mp4",
         },
         { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
         { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
@@ -321,7 +339,7 @@ export default function getWorkouts() {
           video: "male-bodyweight-diamond-pushup-front.mp4",
         },
         { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Push-ups", video: "push-ups.mp4" },
+        { name: "Wrist Curl", video: "male-dumbbell-wrist-curl-side.mp4" },
         {
           name: "Dumbbell Skullcrusher / Tricep Extension",
           video: "male-dumbbell-skullcrusher-side_bgn7Uzz.mp4",
@@ -388,7 +406,10 @@ export default function getWorkouts() {
       exercises: [
         { name: "Press-up Row", video: "press-up-row.mp4" },
         { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
-        { name: "Push-ups", video: "push-ups.mp4" },
+        {
+          name: "Silverback Shrug",
+          video: "male-Dumbbells-dumbbell-silverback-shrug-side.mp4",
+        },
         {
           name: "Left Hand Row",
           video: "male-dumbbell-row-unilateral-side.mp4",
@@ -400,6 +421,39 @@ export default function getWorkouts() {
         {
           name: "Deadlift",
           video: "male-barbell-snatch-grip-deadlift-front.mp4",
+        },
+      ],
+    },
+    {
+      name: "Abs Workout 1",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
+        },
+        {
+          name: "Wood Chopper",
+          video: "male-dumbbell-half-kneeling-wood-chopper-side.mp4",
+        },
+        {
+          name: "Cross Body Romanian Deadlift",
+          video:
+            "male-Dumbbells-dumbbell-cross-body-romanian-deadlift-front.mp4",
+        },
+        {
+          name: "Sumo Squat",
+          video: "male-dumbbell-sumo-squat-side.mp4",
+        },
+        {
+          name: "Russian Twist",
+          video: "male-Dumbbells-dumbbell-russian-twist-side.mp4",
+        },
+        {
+          name: "Dumbbell Crunch",
+          video: "male-dumbbell-crunch-side.mp4",
         },
       ],
     },
