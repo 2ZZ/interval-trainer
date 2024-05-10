@@ -324,6 +324,62 @@ export default function getWorkouts() {
       ],
     },
     {
+      name: "Leg Workout 2 (series)",
+      sets: 1,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Squat",
+          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
+        },
+        {
+          name: "Squat",
+          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
+        },
+        {
+          name: "Squat",
+          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
+        },
+        {
+          name: "Squat",
+          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
+        },
+        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
+        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
+        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
+        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
+        {
+          name: "Calf Raise",
+          video: "male-Dumbbells-dumbbell-calf-raise-side.mp4",
+        },
+        {
+          name: "Calf Raise",
+          video: "male-Dumbbells-dumbbell-calf-raise-side.mp4",
+        },
+        {
+          name: "Calf Raise",
+          video: "male-Dumbbells-dumbbell-calf-raise-side.mp4",
+        },
+        {
+          name: "Calf Raise",
+          video: "male-Dumbbells-dumbbell-calf-raise-side.mp4",
+        },
+        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
+        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
+        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
+        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
+        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
+        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
+        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
+        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
+        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
+        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
+        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
+        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
+      ],
+    },
+    {
       name: "Arm Workout 1",
       sets: 4,
       workTime: 30,
