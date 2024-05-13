@@ -18,7 +18,78 @@ export default function getWorkouts() {
         },
         { name: "Lunge curl LH", video: "lunge-curl-lh.mp4" },
         { name: "Lunge curl RH", video: "lunge-curl-lh.mp4" },
-        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
+        {
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
+        },
+        { name: "Floor Fly", video: "male-dumbbell-chest-fly-side.mp4" },
+      ],
+    },
+    {
+      name: "Balanced 1 (series)",
+      sets: 1,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Squat",
+          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
+        },
+        {
+          name: "Squat",
+          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
+        },
+        {
+          name: "Squat",
+          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
+        },
+        {
+          name: "Squat",
+          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
+        },
+        {
+          name: "Shoulder Press",
+          video: "male-dumbbell-overhead-press-front.mp4",
+        },
+        {
+          name: "Shoulder Press",
+          video: "male-dumbbell-overhead-press-front.mp4",
+        },
+        {
+          name: "Shoulder Press",
+          video: "male-dumbbell-overhead-press-front.mp4",
+        },
+        {
+          name: "Shoulder Press",
+          video: "male-dumbbell-overhead-press-front.mp4",
+        },
+        { name: "Lunge curl LH", video: "lunge-curl-lh.mp4" },
+        { name: "Lunge curl LH", video: "lunge-curl-lh.mp4" },
+        { name: "Lunge curl LH", video: "lunge-curl-lh.mp4" },
+        { name: "Lunge curl LH", video: "lunge-curl-lh.mp4" },
+        { name: "Lunge curl RH", video: "lunge-curl-lh.mp4" },
+        { name: "Lunge curl RH", video: "lunge-curl-lh.mp4" },
+        { name: "Lunge curl RH", video: "lunge-curl-lh.mp4" },
+        { name: "Lunge curl RH", video: "lunge-curl-lh.mp4" },
+        {
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
+        },
+        {
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
+        },
+        {
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
+        },
+        {
+          name: "Dumbbell Situp",
+          video: "male-Dumbbells-dumbbell-situp-side.mp4",
+        },
+        { name: "Floor Fly", video: "male-dumbbell-chest-fly-side.mp4" },
+        { name: "Floor Fly", video: "male-dumbbell-chest-fly-side.mp4" },
+        { name: "Floor Fly", video: "male-dumbbell-chest-fly-side.mp4" },
         { name: "Floor Fly", video: "male-dumbbell-chest-fly-side.mp4" },
       ],
     },
