@@ -34,11 +34,15 @@ export default function ExersizeVideo(props) {
     const nextExersizeName =
       props.currentWorkout.exercises[nextExersizeIndex].name;
 
-    let videoFile = "";
+    let video = "";
     if (props.workoutPhase === "rest") {
-      videoFile = nextExersizeVideo;
+      video = nextExersizeVideo;
     } else if (props.workoutPhase === "work") {
-      videoFile = currentExersizeVideo;
+      video = currentExersizeVideo;
+    }
+
+    if (!video.startsWith("http")) {
+      video = `static/videos/${video}`;
     }
 
     let overlayText = "";
@@ -59,7 +63,7 @@ export default function ExersizeVideo(props) {
   autoplay
   playsinline
   width="100%"
-  src="static/videos/${videoFile}"
+  src="${video}"
   type="video/mp4"
 />
   `;
@@ -70,7 +74,7 @@ export default function ExersizeVideo(props) {
   muted
   playsinline
   width="100%"
-  src="static/videos/${videoFile}"
+  src="${video}"
   type="video/mp4"
 />
   `;
