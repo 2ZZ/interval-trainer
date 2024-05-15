@@ -585,6 +585,39 @@ export default function getWorkouts() {
       ],
     },
     {
+      name: "Full Body Bodybuilding - Day 1",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Barbell Squat",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Barbell-barbell-squat-front.mp4",
+        },
+        {
+          name: "Dumbbell Curl",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-curl-side.mp4",
+        },
+        {
+          name: "Dumbbell Lateral Raise",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-lateral-raise-side.mp4",
+        },
+        {
+          name: "Dumbbell Overhead Tricep Extension",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-overhead-tricep-extension-side_GLrtump.mp4",
+        },
+        {
+          name: "Machine Hamstring Curl",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-machine-hamstring-curl-side.mp4",
+        },
+      ],
+    },
+    {
       name: "Debug",
       sets: 2,
       workTime: 5,
