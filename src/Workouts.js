@@ -585,6 +585,359 @@ export default function getWorkouts() {
       ],
     },
     {
+      name: "Beginner Dumbbell Workout",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Dumbbell Goblet Squat",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-goblet-squat-side.mp4",
+        },
+        {
+          name: "Dumbbell Row Bilateral",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-row-bilateral-side.mp4",
+        },
+        {
+          name: "Dumbbell Forward Lunge",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-forward-lunge-side.mp4",
+        },
+        {
+          name: "Dumbbell Overhead Press",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-overhead-press-side.mp4",
+        },
+      ],
+    },
+    {
+      name: "Beginner's Dumbbell workout",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Dumbbell Bench Press",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-bench-press-side_rqe1iTe.mp4",
+        },
+        {
+          name: "Dumbbell Single Arm Row",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-single-arm-row-side.mp4",
+        },
+        {
+          name: "Dumbbell Romanian Deadlift",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-romanian-deadlift-side.mp4",
+        },
+        {
+          name: "Dumbbell Heels Up Goblet Squat",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-heels-up-goblet-squat-side.mp4",
+        },
+      ],
+    },
+    {
+      name: "Intermediate Dumbbell Workout",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Dumbbell Chest Fly",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-chest-fly-side.mp4",
+        },
+        {
+          name: "Dumbbell Single Arm Row",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-single-arm-row-side.mp4",
+        },
+        {
+          name: "Dumbbell Reverse Lunge",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-reverse-lunge-side.mp4",
+        },
+        {
+          name: "Dumbbell Neutral Overhead Press",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-neutral-overhead-press-side.mp4",
+        },
+        {
+          name: "Dumbbell Calf Raise",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-calf-raise-side.mp4",
+        },
+        {
+          name: "Dumbbell Wood Chopper",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-wood-chopper-side.mp4",
+        },
+      ],
+    },
+    {
+      name: "Advanced Dumbbell Workout",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Dumbbell Bulgarian Split Squat",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-bulgarian-split-squat-side.mp4",
+        },
+        {
+          name: "Dumbbell Laying Reverse Fly",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-laying-reverse-fly-side.mp4",
+        },
+        {
+          name: "Dumbbell Lateral Raise",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-lateral-raise-side.mp4",
+        },
+        {
+          name: "Dumbbell Romanian Deadlift",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-romanian-deadlift-side.mp4",
+        },
+        {
+          name: "Dumbbell Calf Raise",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-calf-raise-side.mp4",
+        },
+        {
+          name: "Dumbbell Twisting Curl",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-twisting-curl-side.mp4",
+        },
+        {
+          name: "Dumbbell Skullcrusher",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-skullcrusher-side_bgn7Uzz.mp4",
+        },
+      ],
+    },
+    {
+      name: "Beginner Bodyweight Workout",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Bodyweight Reverse Lunge",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-bodyweight-reverse-lunge-front.mp4",
+        },
+        {
+          name: "Forearm Plank",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-forearm-plank-side.mp4",
+        },
+        {
+          name: "Decline Push Up",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-decline-push-up-side.mp4",
+        },
+        {
+          name: "Supermans",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-supermans-front.mp4",
+        },
+        {
+          name: "Glute Bridge",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-glute-bridge-front.mp4",
+        },
+      ],
+    },
+    {
+      name: "Intermediate Bodyweight Workout",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Forward Lunges",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-forward-lunges-side.mp4",
+        },
+        {
+          name: "Push Up",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-push-up-side.mp4",
+        },
+        {
+          name: "Dumbbell Elbow Side Plank",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-weighted-side-plank-side.mp4",
+        },
+        {
+          name: "Hand Plank",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-hand-plank-front_ZnMlFBF.mp4",
+        },
+        {
+          name: "Kickbacks",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-kickbacks-side.mp4",
+        },
+        {
+          name: "Calf Raises",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-calf-raises-side.mp4",
+        },
+      ],
+    },
+    {
+      name: "Advanced Bodyweight Workout",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Chin Ups",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-chinup-side.mp4",
+        },
+        {
+          name: "Calf Raises",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-calf-raises-side.mp4",
+        },
+        {
+          name: "Lateral Lunge",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-lateral-lunge-side.mp4",
+        },
+        {
+          name: "Box Dips",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-dips-side.mp4",
+        },
+        {
+          name: "Hollow Hold",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-hollow-hold-side.mp4",
+        },
+        {
+          name: "Side Plank Reach Through",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-side-plank-reach-through-side.mp4",
+        },
+        {
+          name: "Nordic Hamstring Curl",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-nordic-hamstring-curl-side.mp4",
+        },
+        {
+          name: "Elevated Pike Press",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-elevated-pike-press-side.mp4",
+        },
+      ],
+    },
+    {
+      name: "Core Conditioning",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Situp",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-situp-front.mp4",
+        },
+        {
+          name: "Laying Leg Raises",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-leg-raises-side.mp4",
+        },
+        {
+          name: "Elbow Side Plank",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-elbow-side-plank-side.mp4",
+        },
+        {
+          name: "Dumbbell Side Bend",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-side-bend-side.mp4",
+        },
+      ],
+    },
+    {
+      name: "Ab Workout 1",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Crunches",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-crunch-side.mp4",
+        },
+        {
+          name: "Hanging Knee Raises",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-hanging-knee-raises-side.mp4",
+        },
+        {
+          name: "Bicycle Crunch",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-bicycle-crunch-front.mp4",
+        },
+      ],
+    },
+    {
+      name: "Ab Workout 3",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Laying Leg Raises",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-bodyweight-leg-raises-side.mp4",
+        },
+        {
+          name: "Dumbbell Russian Twist",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-russian-twist-front.mp4",
+        },
+      ],
+    },
+    {
+      name: "The 1 Dumbbell Workout",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Dumbbell Goblet Reverse Lunge",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-dumbbell-goblet-reverse-lunge-side.mp4",
+        },
+        {
+          name: "Dumbbell Single Arm Row",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-single-arm-row-side.mp4",
+        },
+        {
+          name: "Dumbbell Goblet Good Morning",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-goblet-good-morning-side.mp4",
+        },
+        {
+          name: "Push Up",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-push-up-side.mp4",
+        },
+      ],
+    },
+    {
       name: "Full Body Bodybuilding - Day 1",
       sets: 4,
       workTime: 40,
@@ -614,6 +967,77 @@ export default function getWorkouts() {
           name: "Machine Hamstring Curl",
           video:
             "https://media.musclewiki.com/media/uploads/videos/branded/male-machine-hamstring-curl-side.mp4",
+        },
+      ],
+    },
+    {
+      name: "Full Body Bodybuilding - Day 2",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Dumbbell Bulgarian Split Squat",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Dumbbells-dumbbell-bulgarian-split-squat-side.mp4",
+        },
+        {
+          name: "Barbell Bench Press",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-barbell-bench-press-side_KciuhbB.mp4",
+        },
+        {
+          name: "Cable High Single Arm Rear Delt Fly",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Cables-cable-rear-delt-fly-side.mp4",
+        },
+        {
+          name: "Machine Pulldown",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-machine-pulldown-side.mp4",
+        },
+        {
+          name: "Machine Standing Calf Raises",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-machine-standing-calf-raises-side.mp4",
+        },
+      ],
+    },
+    {
+      name: "Full Body Bodybuilding - Day 3",
+      sets: 4,
+      workTime: 40,
+      restTime: 20,
+      exercises: [
+        {
+          name: "Barbell Romanian Deadlift",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Barbell-barbell-romanian-deadlift-front.mp4",
+        },
+        {
+          name: "Cable Chest Press",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-cable-chestpress-side.mp4",
+        },
+        {
+          name: "Cable High Single Arm Rear Delt Fly",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Cables-cable-rear-delt-fly-side.mp4",
+        },
+        {
+          name: "Cable Lat Prayer",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-Cables-cable-lat-prayer-side.mp4",
+        },
+        {
+          name: "Plate Full Lateral Raise",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-plate-full-lateral-raise-side.mp4",
+        },
+        {
+          name: "Machine Leg Extension",
+          video:
+            "https://media.musclewiki.com/media/uploads/videos/branded/male-machine-leg-extension-side.mp4",
         },
       ],
     },
