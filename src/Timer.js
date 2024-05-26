@@ -1,49 +1,60 @@
 import * as React from "react";
 import ReactCountdownClock from "react-countdown-clock";
 
-export default class Timer extends React.Component {
-  render() {
-    let time = 0;
-    let colour;
-    if (this.props.workoutPhase === "ready") {
-      colour = "blue";
-    } else if (this.props.workoutPhase === "work") {
-      colour = "red";
-      time = this.props.currentWorkout.workTime;
-    } else if (this.props.workoutPhase === "rest") {
-      colour = "green";
-      time = this.props.currentWorkout.restTime;
-    } else if (this.props.workoutPhase === "countdown") {
-      time = this.props.countdownTime;
-      colour = "blue";
-    }
+import { createLogger } from "./utils";
 
-    const divStyle = {
-      position: "relative",
-    };
-
-    let paused = false;
-    if (this.props.workoutPaused) {
-      paused = true;
-    } else if (!this.props.workoutStarted) {
-      paused = true;
-    }
-    return (
-      <div style={divStyle}>
-        <ReactCountdownClock
-          key={
-            this.props.workoutPhase + "" + time + "" + this.props.workoutRewind
-          }
-          seconds={time}
-          color={colour}
-          alpha={0.9}
-          size={200}
-          onComplete={() => {
-            console.log("Timer complete");
-          }}
-          paused={paused}
-        />
-      </div>
-    );
+const getColor = (phase) => {
+  switch (phase) {
+    case "work":
+      return "red";
+    case "rest":
+      return "green";
+    default:
+      return "blue";
   }
-}
+};
+
+const getTime = (currentRoutine, countdownTime) => {
+  switch (currentRoutine.phase) {
+    case "work":
+      return currentRoutine.spec.workTime;
+    case "rest":
+      return currentRoutine.spec.restTime;
+    case "countdown":
+      return countdownTime;
+    default:
+      return 0;
+  }
+};
+
+const Timer = ({
+  debug,
+  currentRoutine,
+  countdownTime,
+  routinePaused,
+  routineStarted,
+  routineRewind,
+}) => {
+  const log = createLogger(debug);
+  const color = getColor(currentRoutine.phase);
+  const time = getTime(currentRoutine, countdownTime);
+  const paused = routinePaused || !routineStarted;
+
+  return (
+    <div style={{ position: "relative" }}>
+      <ReactCountdownClock
+        key={`${currentRoutine.phase}${time}${routineRewind}`}
+        seconds={time}
+        color={color}
+        alpha={0.9}
+        size={200}
+        onComplete={() => {
+          log("Timer complete");
+        }}
+        paused={paused}
+      />
+    </div>
+  );
+};
+
+export default Timer;

@@ -4,20 +4,40 @@ import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import IconButton from "@mui/material/IconButton";
 import SaveIcon from "@mui/icons-material/Save";
 
+import { createLogger } from "./utils";
+
 export default function Stats(props) {
-  React.useEffect(() => {
-    if (props.workoutStarted) {
-      props.setWorkoutStartTime(setDate());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.workoutStarted]);
+  const {
+    debug,
+    format,
+    currentMode,
+    currentRoutine,
+    routineStarted,
+    routineFinished,
+    routineStartTime,
+    setRoutineStartTime,
+    historyUpdated,
+    setHistoryUpdated,
+    timers,
+    setTimers,
+  } = props;
+
+  const log = createLogger(debug);
 
   React.useEffect(() => {
-    if (props.workoutFinished && props.percentWorkoutComplete > 25) {
+    if (routineStarted) {
+      setRoutineStartTime(setDate());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [routineStarted]);
+
+  React.useEffect(() => {
+    // if (routineFinished && currentRoutine.percentComplete > 25) {
+    if (routineFinished) {
       saveStats();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.workoutFinished]);
+  }, [routineFinished]);
 
   function setDate() {
     let newDate = new Date();
@@ -31,18 +51,20 @@ export default function Stats(props) {
 
   function generateStatsObj() {
     return {
-      Date: props.workoutStartTime,
-      Routine: props.currentWorkout.name,
-      "Percent completed": props.percentWorkoutComplete + "%",
-      "Paused time": getHumanTime(props.pausedTime),
-      "Total time": getHumanTime(props.totalTime),
+      Date: routineStartTime,
+      Routine: currentRoutine.spec.name,
+      "Percent completed": currentRoutine.percentComplete + "%",
+      "Paused time": getHumanTime(timers.paused),
+      "Total time": getHumanTime(timers.total),
+      Mode: currentMode.displayName,
+      Format: format,
+      History: currentRoutine.history,
     };
   }
 
   function generateStatsStr() {
     const stats = generateStatsObj();
     const statsStr = JSON.stringify(stats, null, 2);
-    console.log(`Generated stats: ${statsStr}`);
     return statsStr;
   }
 
@@ -56,7 +78,7 @@ export default function Stats(props) {
       "href",
       "data:text/plain;charset=utf-8," + encodeURIComponent(generateStatsStr())
     );
-    element.setAttribute("download", `workout-${props.workoutStartTime}.txt`);
+    element.setAttribute("download", `routine-${routineStartTime}.txt`);
     element.style.display = "none";
     document.body.appendChild(element);
     element.click();
@@ -66,9 +88,10 @@ export default function Stats(props) {
   function saveStats() {
     const statsStr = localStorage.getItem("workoutHistory") || "[]";
     let stats = JSON.parse(statsStr);
+    log("Saving stats: " + JSON.stringify(stats));
     stats.unshift(generateStatsObj());
     localStorage.setItem("workoutHistory", JSON.stringify(stats));
-    props.setHistoryUpdated(!props.historyUpdated);
+    setHistoryUpdated(!historyUpdated);
   }
 
   function getHumanTime(time) {
@@ -79,23 +102,24 @@ export default function Stats(props) {
 
   return (
     <div>
+      {routineStartTime && (
+        <p>
+          <b>Started at:</b> {routineStartTime}
+        </p>
+      )}
       <p>
-        <b>Started:</b> {props.workoutStartTime}
+        <b>Routine:</b> {currentRoutine.spec.name} ({format})
       </p>
       <p>
-        <b>Routine:</b> {props.currentWorkout.name}
+        <b>Completed:</b> {currentRoutine.percentComplete}%
       </p>
+      {currentMode === "timed" && (
+        <p>
+          <b>Paused time:</b> {getHumanTime(timers.paused)}
+        </p>
+      )}
       <p>
-        <b>Set:</b> {props.currentSet}/{props.currentWorkout.sets}
-      </p>
-      <p>
-        <b>Completed:</b> {props.percentWorkoutComplete}%
-      </p>
-      <p>
-        <b>Paused time:</b> {getHumanTime(props.pausedTime)}
-      </p>
-      <p>
-        <b>Total time:</b> {getHumanTime(props.totalTime)}
+        <b>Total time:</b> {getHumanTime(timers.total)}
       </p>
 
       <div style={{ textAlign: "right" }}>

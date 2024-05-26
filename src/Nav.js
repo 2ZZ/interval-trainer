@@ -3,6 +3,8 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 
+import getEquipment from "./Equipment";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -19,95 +21,151 @@ export default function Nav(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const {
+    currentRoutine,
+    routineStarted,
+    routinePaused,
+    currentMode,
+    setSet,
+    routineHistory,
+    currentExercise,
+    onClickStop,
+  } = props;
+
+  const equipment = getEquipment();
+
+  function getMostRecentWeightUsed(routineName, exerciseIndex) {
+    if (!routineHistory || routineHistory.length === 0) {
+      return null;
+    }
+
+    for (let i = 0; i < routineHistory.length; i++) {
+      /* for (let i = routineHistory.length - 1; i >= 0; i--) { */
+      const routine = routineHistory[i];
+
+      if (routine.Routine === routineName) {
+        const historyEntry = routine.History.find(
+          (entry) => entry.exerciseIndex === exerciseIndex
+        );
+        if (historyEntry) {
+          return historyEntry.weight;
+        }
+      }
+    }
+
+    return null;
+  }
+
   return (
     <div>
       {/* Start / Stop */}
-      {props.workoutStarted ? (
-        <>
-          {props.workoutPaused ? null : (
-            <Button
-              variant="outlined"
-              color="error"
-              sx={sx}
-              onClickCapture={() => handleOpen()}
-            >
-              Stop
-            </Button>
-          )}
-        </>
+      {routineStarted ? (
+        !routinePaused && (
+          <Button
+            variant="outlined"
+            color="error"
+            sx={sx}
+            onClickCapture={handleOpen}
+          >
+            Stop
+          </Button>
+        )
       ) : (
         <Button
           variant="outlined"
           color="success"
           sx={sx}
-          onClick={() => props.onClickStart()}
+          onClick={props.onClickStart}
         >
           Start
         </Button>
       )}
 
       {/* Reset */}
-      {props.workoutPhase === "finished" ? (
+      {currentRoutine.phase === "finished" && (
         <Button
           variant="outlined"
           color="warning"
           sx={sx}
-          onClick={() => props.onClickReset()}
+          onClick={props.onClickReset}
         >
           Reset
         </Button>
-      ) : null}
+      )}
+
+      {/* Set complete */}
+      {currentMode.name === "click" && routineStarted && !routinePaused && (
+        <>
+          {equipment.weight.dumbbell.kg.map((weight) => {
+            const mostRecentWeight = getMostRecentWeightUsed(
+              currentRoutine.spec.name,
+              currentExercise.index
+            );
+
+            let buttonColor = "primary";
+            if (weight === mostRecentWeight) {
+              buttonColor = "success";
+            } else if (
+              mostRecentWeight &&
+              weight > mostRecentWeight &&
+              (mostRecentWeight === 0 ||
+                equipment.weight.dumbbell.kg.indexOf(weight) ===
+                  equipment.weight.dumbbell.kg.indexOf(mostRecentWeight) + 1)
+            ) {
+              buttonColor = "warning";
+            }
+
+            return (
+              <Button
+                key={weight}
+                variant="outlined"
+                color={buttonColor}
+                sx={sx}
+                onClick={() => {
+                  setSet((set) => ({
+                    ...set,
+                    isComplete: true,
+                    weight: weight,
+                  }));
+                }}
+              >
+                {weight} kg
+              </Button>
+            );
+          })}
+        </>
+      )}
 
       {/* Pause / Unpause */}
-      {(() => {
-        if (props.workoutStarted && props.workoutPaused) {
-          return (
-            <Button
-              variant="outlined"
-              color="warning"
-              sx={sx}
-              onClick={() => props.onClickUnpause()}
-            >
-              Unpause
-            </Button>
-          );
-        } else if (props.workoutStarted && !props.workoutPaused) {
-          return (
-            <Button
-              variant="outlined"
-              color="warning"
-              sx={sx}
-              onClick={() => props.onClickPause()}
-            >
-              Pause
-            </Button>
-          );
-        }
-      })()}
+      {currentMode.name !== "click" && routineStarted && (
+        <Button
+          variant="outlined"
+          color="warning"
+          sx={sx}
+          onClick={routinePaused ? props.onClickUnpause : props.onClickPause}
+        >
+          {routinePaused ? "Unpause" : "Pause"}
+        </Button>
+      )}
 
       {/* Rewind */}
-      {(() => {
-        if (
-          props.workoutStarted &&
-          props.workoutPaused &&
-          props.workoutPhase !== "countdown" &&
-          !(
-            props.workTime === props.currentWorkout.workTime &&
-            props.restTime === props.currentWorkout.restTime
-          )
-        ) {
-          return (
-            <Button
-              variant="outlined"
-              color="secondary"
-              sx={sx}
-              onClick={() => props.onClickRewind()}
-            >
-              Rewind
-            </Button>
-          );
-        }
-      })()}
+      {currentMode.name !== "click" &&
+        routineStarted &&
+        routinePaused &&
+        currentRoutine.phase !== "countdown" &&
+        !(
+          props.workTime === props.currentRoutine.spec.workTime &&
+          props.restTime === props.currentRoutine.spec.restTime
+        ) && (
+          <Button
+            variant="outlined"
+            color="secondary"
+            sx={sx}
+            onClick={props.onClickRewind}
+          >
+            Rewind
+          </Button>
+        )}
 
       {/* Confirm stop modal */}
       <Modal
@@ -121,9 +179,8 @@ export default function Nav(props) {
             variant="outlined"
             color="error"
             sx={sx}
-            onClickCapture={() => handleOpen()}
             onClick={() => {
-              props.onClickStop();
+              onClickStop();
               handleClose();
             }}
           >

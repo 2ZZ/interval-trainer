@@ -1,4 +1,4 @@
-## Interval Trainer
+## Workout Assistant
 
 #### Run locally
 

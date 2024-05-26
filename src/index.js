@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactDOM from "react-dom/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
@@ -11,15 +11,19 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
+import ModeSelect from "./ModeSelect";
 import RoutineSelect from "./RoutineSelect";
-import Workout from "./Workout";
+import FormatSelect from "./FormatSelect";
+import ClickRoutine from "./ClickRoutine";
+import TimedRoutine from "./TimedRoutine";
 import Nav from "./Nav";
-import ExersizeList from "./ExersizeList";
-import ExersizeVideo from "./ExersizeVideo";
+import ExerciseList from "./ExerciseList";
+import ExerciseVideo from "./ExerciseVideo";
 import Timer from "./Timer";
 import Stats from "./Stats";
 import Finished from "./Finished";
-import getWorkouts from "./Workouts";
+import getModes from "./Modes";
+import getRoutines from "./Routines";
 import GetReady from "./GetReady";
 import History from "./History";
 
@@ -37,68 +41,122 @@ const mdTheme = createTheme({
   },
 });
 
-function Index(props) {
-  const [workouts] = useState(getWorkouts());
-  const [workoutStarted, setWorkoutStarted] = useState(undefined);
-  const [workoutStopped, setWorkoutStopped] = useState(undefined);
-  const [workoutFinished, setWorkoutFinished] = useState(undefined);
-  const [workoutReset, setWorkoutReset] = useState(false);
-  const [exerciseStarted, setExerciseStarted] = useState(false);
-  const [workoutRewind, setWorkoutRewind] = useState(false);
+function Index() {
+  const [modes] = useState(getModes());
+  const [format, setFormat] = useState("series");
+  const [routines, setRoutines] = useState(getRoutines(format));
+  const routineHistory = JSON.parse(localStorage.getItem("workoutHistory"));
+
+  const [routineReset, setRoutineReset] = useState(false);
+  const [routineRewind, setRoutineRewind] = useState(false);
   const [historyUpdated, setHistoryUpdated] = useState(false);
-  const [currentWorkout, setCurrentWorkout] = useState(getWorkouts()[0]);
-  const [currentExersize, setCurrentExersize] = useState(0);
-  const [currentSet, setCurrentSet] = useState(0);
-  const [workTime, setWorkTime] = useState(0);
-  const [restTime, setRestTime] = useState(0);
-  const [workoutPhase, setWorkoutPhase] = useState("ready");
-  const [workoutPaused, setWorkoutPaused] = useState(undefined);
-  const [totalTime, setTotalTime] = useState(0);
-  const [pausedTime, setPausedTime] = useState(0);
-  const [percentWorkoutComplete, setPercentWorkoutComplete] = useState(0);
-  const [workoutStartTime, setWorkoutStartTime] = useState("");
+  const [currentMode, setCurrentMode] = useState(getModes()[0]);
+
+  const [routinePaused, setRoutinePaused] = useState(undefined);
+  const [routineStartTime, setRoutineStartTime] = useState("");
+  const [routineStarted, setRoutineStarted] = useState(undefined);
+  const [routineStopped, setRoutineStopped] = useState(undefined);
+  const [routineFinished, setRoutineFinished] = useState(undefined);
+  const [currentRoutine, setCurrentRoutine] = useState({
+    spec: routines[0],
+    phase: "ready",
+    history: [],
+    percentComplete: 0,
+  });
+
+  const [timers, setTimers] = useState({
+    total: 0,
+    paused: 0,
+    work: 0,
+    rest: 0,
+  });
+
+  const [currentExercise, setCurrentExercise] = useState({
+    index: 0,
+    currentSet: 0,
+    started: false,
+  });
+
+  const [set, setSet] = useState({
+    isComplete: false,
+    weight: null,
+  });
 
   const countdownTime = 10;
-  const debug = currentWorkout.name === "Debug" ? true : false;
+  const debug = currentRoutine.spec.name === "Debug" ? true : false;
+
+  useEffect(() => {
+    const updatedRoutines = getRoutines(format);
+    const routineIndex = routines.findIndex(
+      (routine) => routine === currentRoutine.spec
+    );
+    setRoutines(updatedRoutines);
+    setCurrentRoutine((prevRoutine) => ({
+      ...prevRoutine,
+      spec: updatedRoutines[routineIndex],
+    }));
+  }, [format, routines, currentRoutine]);
 
   return (
     <div className="main">
-      <Workout
-        debug={debug}
-        workoutStarted={workoutStarted}
-        setWorkoutStarted={setWorkoutStarted}
-        workoutStopped={workoutStopped}
-        setWorkoutStopped={setWorkoutStopped}
-        workoutFinished={workoutFinished}
-        setWorkoutFinished={setWorkoutFinished}
-        workoutReset={workoutReset}
-        setWorkoutReset={setWorkoutReset}
-        currentWorkout={currentWorkout}
-        setCurrentWorkout={setCurrentWorkout}
-        currentSet={currentSet}
-        setCurrentSet={setCurrentSet}
-        currentExersize={currentExersize}
-        setCurrentExersize={setCurrentExersize}
-        workoutPhase={workoutPhase}
-        setWorkoutPhase={setWorkoutPhase}
-        workTime={workTime}
-        setWorkTime={setWorkTime}
-        restTime={restTime}
-        setRestTime={setRestTime}
-        workoutPaused={workoutPaused}
-        setWorkoutPaused={setWorkoutPaused}
-        totalTime={totalTime}
-        setTotalTime={setTotalTime}
-        pausedTime={pausedTime}
-        setPausedTime={setPausedTime}
-        exerciseStarted={exerciseStarted}
-        setExerciseStarted={setExerciseStarted}
-        countdownTime={countdownTime}
-        setPercentWorkoutComplete={setPercentWorkoutComplete}
-        workoutRewind={workoutRewind}
-        setWorkoutRewind={setWorkoutRewind}
-        setWorkoutStartTime={setWorkoutStartTime}
-      />
+      {currentMode.name === "click" && (
+        <ClickRoutine
+          debug={debug}
+          routineStarted={routineStarted}
+          setRoutineStarted={setRoutineStarted}
+          routineStopped={routineStopped}
+          setRoutineStopped={setRoutineStopped}
+          routineFinished={routineFinished}
+          setRoutineFinished={setRoutineFinished}
+          routineReset={routineReset}
+          setRoutineReset={setRoutineReset}
+          currentRoutine={currentRoutine}
+          setCurrentRoutine={setCurrentRoutine}
+          currentExercise={currentExercise}
+          setCurrentExercise={setCurrentExercise}
+          routinePaused={routinePaused}
+          setRoutinePaused={setRoutinePaused}
+          countdownTime={countdownTime}
+          routineRewind={routineRewind}
+          setRoutineRewind={setRoutineRewind}
+          setRoutineStartTime={setRoutineStartTime}
+          setCurrentMode={setCurrentMode}
+          currentMode={currentMode}
+          set={set}
+          setSet={setSet}
+          timers={timers}
+          setTimers={setTimers}
+        />
+      )}
+      {currentMode.name === "timer" && (
+        <TimedRoutine
+          debug={debug}
+          routineStarted={routineStarted}
+          setRoutineStarted={setRoutineStarted}
+          routineStopped={routineStopped}
+          setRoutineStopped={setRoutineStopped}
+          routineFinished={routineFinished}
+          setRoutineFinished={setRoutineFinished}
+          routineReset={routineReset}
+          setRoutineReset={setRoutineReset}
+          currentRoutine={currentRoutine}
+          setCurrentRoutine={setCurrentRoutine}
+          currentExercise={currentExercise}
+          setCurrentExercise={setCurrentExercise}
+          routinePaused={routinePaused}
+          setRoutinePaused={setRoutinePaused}
+          countdownTime={countdownTime}
+          routineRewind={routineRewind}
+          setRoutineRewind={setRoutineRewind}
+          setRoutineStartTime={setRoutineStartTime}
+          setCurrentMode={setCurrentMode}
+          currentMode={currentMode}
+          set={set}
+          setSet={setSet}
+          timers={timers}
+          setTimers={setTimers}
+        />
+      )}
       <ThemeProvider theme={mdTheme}>
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
@@ -112,13 +170,19 @@ function Index(props) {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                Interval Trainer
+                Routine Assistant
               </Typography>
-              <RoutineSelect
-                workouts={workouts}
-                currentWorkout={currentWorkout}
-                setCurrentWorkout={setCurrentWorkout}
+              <ModeSelect
+                modes={modes}
+                currentMode={currentMode}
+                setCurrentMode={setCurrentMode}
               />
+              <RoutineSelect
+                routines={routines}
+                currentRoutine={currentRoutine}
+                setCurrentRoutine={setCurrentRoutine}
+              />
+              <FormatSelect format={format} setFormat={setFormat} />
             </Toolbar>
           </AppBar>
 
@@ -148,18 +212,21 @@ function Index(props) {
                       }}
                     >
                       <Stats
-                        currentSet={currentSet}
-                        totalTime={totalTime}
-                        pausedTime={pausedTime}
-                        workoutPhase={workoutPhase}
-                        currentWorkout={currentWorkout}
-                        percentWorkoutComplete={percentWorkoutComplete}
+                        currentSet={currentExercise.currentSet}
+                        currentRoutine={currentRoutine}
                         historyUpdated={historyUpdated}
                         setHistoryUpdated={setHistoryUpdated}
-                        workoutFinished={workoutFinished}
-                        workoutStarted={workoutStarted}
-                        workoutStartTime={workoutStartTime}
-                        setWorkoutStartTime={setWorkoutStartTime}
+                        routineFinished={routineFinished}
+                        routineStarted={routineStarted}
+                        routineStartTime={routineStartTime}
+                        setRoutineStartTime={setRoutineStartTime}
+                        currentMode={currentMode}
+                        currentExercise={currentExercise}
+                        format={format}
+                        routineHistory={routineHistory}
+                        debug={debug}
+                        timers={timers}
+                        setTimers={setTimers}
                       />
                     </Paper>
                   </Box>
@@ -171,9 +238,9 @@ function Index(props) {
                         flexDirection: "column",
                       }}
                     >
-                      <ExersizeList
-                        currentExersize={currentExersize}
-                        currentWorkout={currentWorkout}
+                      <ExerciseList
+                        currentExercise={currentExercise}
+                        currentRoutine={currentRoutine}
                       />
                     </Paper>
                   </Box>
@@ -188,60 +255,59 @@ function Index(props) {
                         flexDirection: "column",
                       }}
                     >
-                      <GetReady workoutPhase={workoutPhase} />
-                      <ExersizeVideo
-                        // debug={debug}
-                        currentExersize={currentExersize}
-                        currentWorkout={currentWorkout}
-                        exerciseStarted={exerciseStarted}
-                        workoutPaused={workoutPaused}
-                        workoutPhase={workoutPhase}
+                      <GetReady currentRoutine={currentRoutine} />
+                      <ExerciseVideo
+                        currentRoutine={currentRoutine}
+                        currentExercise={currentExercise}
+                        routinePaused={routinePaused}
+                        currentMode={currentMode}
                       />
-                      <Finished workoutFinished={workoutFinished} />
+                      <Finished routineFinished={routineFinished} />
                     </Paper>
                   </Box>
                 </Grid>
 
                 <Grid item xs={12} md={4} lg={3}>
-                  <Box sx={{ m: 2 }}>
-                    <Paper
-                      sx={{
-                        p: 2,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Timer
-                        debug={debug}
-                        workoutPhase={workoutPhase}
-                        workTime={workTime}
-                        restTime={restTime}
-                        workoutPaused={workoutPaused}
-                        workoutStarted={workoutStarted}
-                        currentWorkout={currentWorkout}
-                        countdownTime={countdownTime}
-                        workoutRewind={workoutRewind}
-                      />
-                    </Paper>
-                  </Box>
+                  {currentMode.name !== "click" && (
+                    <Box sx={{ m: 2 }}>
+                      <Paper
+                        sx={{
+                          p: 2,
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Timer
+                          debug={debug}
+                          routinePaused={routinePaused}
+                          routineStarted={routineStarted}
+                          currentRoutine={currentRoutine}
+                          countdownTime={countdownTime}
+                          routineRewind={routineRewind}
+                        />
+                      </Paper>
+                    </Box>
+                  )}
                   <Box sx={{ m: 2 }}>
                     <Paper
                       sx={{ p: 2, display: "flex", flexDirection: "column" }}
                     >
                       <Nav
-                        workoutStarted={workoutStarted}
-                        workoutPaused={workoutPaused}
-                        workoutPhase={workoutPhase}
-                        workTime={workTime}
-                        restTime={restTime}
-                        currentWorkout={currentWorkout}
-                        onClickPause={() => setWorkoutPaused(true)}
-                        onClickUnpause={() => setWorkoutPaused(false)}
-                        onClickStart={() => setWorkoutStarted(true)}
-                        onClickStop={() => setWorkoutStopped(true)}
-                        onClickReset={() => setWorkoutReset(true)}
-                        onClickRewind={() => setWorkoutRewind(true)}
+                        routineStarted={routineStarted}
+                        routinePaused={routinePaused}
+                        currentRoutine={currentRoutine}
+                        onClickPause={() => setRoutinePaused(true)}
+                        onClickUnpause={() => setRoutinePaused(false)}
+                        onClickStart={() => setRoutineStarted(true)}
+                        onClickStop={() => setRoutineStopped(true)}
+                        onClickReset={() => setRoutineReset(true)}
+                        onClickRewind={() => setRoutineRewind(true)}
+                        set={set}
+                        setSet={setSet}
+                        currentMode={currentMode}
+                        routineHistory={routineHistory}
+                        currentExercise={currentExercise}
                       />
                     </Paper>
                   </Box>

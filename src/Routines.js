@@ -1,7 +1,17 @@
 // Video source: https://musclewiki.com/
 
-export default function getWorkouts() {
-  return [
+export default function getRoutines(format) {
+  const routines = [
+    {
+      name: "Debug",
+      sets: 2,
+      workTime: 5,
+      restTime: 5,
+      exercises: [
+        { name: "Squat Press", video: "squat-press.mp4" },
+        { name: "Press-up Row", video: "press-up-row.mp4" },
+      ],
+    },
     {
       name: "Balanced 1",
       sets: 4,
@@ -26,74 +36,6 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Balanced 1 (series)",
-      sets: 1,
-      workTime: 40,
-      restTime: 20,
-      exercises: [
-        {
-          name: "Squat",
-          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
-        },
-        {
-          name: "Squat",
-          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
-        },
-        {
-          name: "Squat",
-          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
-        },
-        {
-          name: "Squat",
-          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
-        },
-        {
-          name: "Shoulder Press",
-          video: "male-dumbbell-overhead-press-front.mp4",
-        },
-        {
-          name: "Shoulder Press",
-          video: "male-dumbbell-overhead-press-front.mp4",
-        },
-        {
-          name: "Shoulder Press",
-          video: "male-dumbbell-overhead-press-front.mp4",
-        },
-        {
-          name: "Shoulder Press",
-          video: "male-dumbbell-overhead-press-front.mp4",
-        },
-        { name: "Lunge curl LH", video: "lunge-curl-lh.mp4" },
-        { name: "Lunge curl LH", video: "lunge-curl-lh.mp4" },
-        { name: "Lunge curl LH", video: "lunge-curl-lh.mp4" },
-        { name: "Lunge curl LH", video: "lunge-curl-lh.mp4" },
-        { name: "Lunge curl RH", video: "lunge-curl-lh.mp4" },
-        { name: "Lunge curl RH", video: "lunge-curl-lh.mp4" },
-        { name: "Lunge curl RH", video: "lunge-curl-lh.mp4" },
-        { name: "Lunge curl RH", video: "lunge-curl-lh.mp4" },
-        {
-          name: "Dumbbell Situp",
-          video: "male-Dumbbells-dumbbell-situp-side.mp4",
-        },
-        {
-          name: "Dumbbell Situp",
-          video: "male-Dumbbells-dumbbell-situp-side.mp4",
-        },
-        {
-          name: "Dumbbell Situp",
-          video: "male-Dumbbells-dumbbell-situp-side.mp4",
-        },
-        {
-          name: "Dumbbell Situp",
-          video: "male-Dumbbells-dumbbell-situp-side.mp4",
-        },
-        { name: "Floor Fly", video: "male-dumbbell-chest-fly-side.mp4" },
-        { name: "Floor Fly", video: "male-dumbbell-chest-fly-side.mp4" },
-        { name: "Floor Fly", video: "male-dumbbell-chest-fly-side.mp4" },
-        { name: "Floor Fly", video: "male-dumbbell-chest-fly-side.mp4" },
-      ],
-    },
-    {
       name: "Balanced 2",
       sets: 4,
       workTime: 40,
@@ -107,62 +49,6 @@ export default function getWorkouts() {
         { name: "Press-up Row", video: "press-up-row.mp4" },
         { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
         { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        {
-          name: "Deadlift",
-          video: "male-barbell-snatch-grip-deadlift-front.mp4",
-        },
-      ],
-    },
-    {
-      name: "Balanced 2 (series)",
-      sets: 1,
-      workTime: 40,
-      restTime: 20,
-      exercises: [
-        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
-        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
-        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
-        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
-        {
-          name: "Dumbbell Situp",
-          video: "male-Dumbbells-dumbbell-situp-side.mp4",
-        },
-        {
-          name: "Dumbbell Situp",
-          video: "male-Dumbbells-dumbbell-situp-side.mp4",
-        },
-        {
-          name: "Dumbbell Situp",
-          video: "male-Dumbbells-dumbbell-situp-side.mp4",
-        },
-        {
-          name: "Dumbbell Situp",
-          video: "male-Dumbbells-dumbbell-situp-side.mp4",
-        },
-        { name: "Press-up Row", video: "press-up-row.mp4" },
-        { name: "Press-up Row", video: "press-up-row.mp4" },
-        { name: "Press-up Row", video: "press-up-row.mp4" },
-        { name: "Press-up Row", video: "press-up-row.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        {
-          name: "Deadlift",
-          video: "male-barbell-snatch-grip-deadlift-front.mp4",
-        },
-        {
-          name: "Deadlift",
-          video: "male-barbell-snatch-grip-deadlift-front.mp4",
-        },
-        {
-          name: "Deadlift",
-          video: "male-barbell-snatch-grip-deadlift-front.mp4",
-        },
         {
           name: "Deadlift",
           video: "male-barbell-snatch-grip-deadlift-front.mp4",
@@ -185,74 +71,6 @@ export default function getWorkouts() {
         {
           name: "Right Hand Row",
           video: "male-dumbbell-row-unilateral-side.mp4",
-        },
-        {
-          name: "Dumbbell Stiff Legged Deadlift",
-          video: "male-barbell-stiff-leg-deadlift-front.mp4",
-        },
-      ],
-    },
-    {
-      name: "Balanced 3 (series)",
-      sets: 1,
-      workTime: 40,
-      restTime: 20,
-      exercises: [
-        { name: "Squat Press", video: "squat-press.mp4" },
-        { name: "Squat Press", video: "squat-press.mp4" },
-        { name: "Squat Press", video: "squat-press.mp4" },
-        { name: "Squat Press", video: "squat-press.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Hammer Curl", video: "male-dumbbell-hammer-curl-front.mp4" },
-        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
-        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
-        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
-        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
-        {
-          name: "Left Hand Row",
-          video: "male-dumbbell-row-unilateral-side.mp4",
-        },
-        {
-          name: "Left Hand Row",
-          video: "male-dumbbell-row-unilateral-side.mp4",
-        },
-        {
-          name: "Left Hand Row",
-          video: "male-dumbbell-row-unilateral-side.mp4",
-        },
-        {
-          name: "Left Hand Row",
-          video: "male-dumbbell-row-unilateral-side.mp4",
-        },
-        {
-          name: "Right Hand Row",
-          video: "male-dumbbell-row-unilateral-side.mp4",
-        },
-        {
-          name: "Right Hand Row",
-          video: "male-dumbbell-row-unilateral-side.mp4",
-        },
-        {
-          name: "Right Hand Row",
-          video: "male-dumbbell-row-unilateral-side.mp4",
-        },
-        {
-          name: "Right Hand Row",
-          video: "male-dumbbell-row-unilateral-side.mp4",
-        },
-        {
-          name: "Dumbbell Stiff Legged Deadlift",
-          video: "male-barbell-stiff-leg-deadlift-front.mp4",
-        },
-        {
-          name: "Dumbbell Stiff Legged Deadlift",
-          video: "male-barbell-stiff-leg-deadlift-front.mp4",
-        },
-        {
-          name: "Dumbbell Stiff Legged Deadlift",
-          video: "male-barbell-stiff-leg-deadlift-front.mp4",
         },
         {
           name: "Dumbbell Stiff Legged Deadlift",
@@ -284,75 +102,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Balanced 4 (series)",
-      sets: 1,
-      workTime: 40,
-      restTime: 20,
-      exercises: [
-        {
-          name: "Dumbbell Skullcrusher / Tricep Extension",
-          video: "male-dumbbell-skullcrusher-front_hgKANkM.mp4",
-        },
-        {
-          name: "Dumbbell Skullcrusher / Tricep Extension",
-          video: "male-dumbbell-skullcrusher-front_hgKANkM.mp4",
-        },
-        {
-          name: "Dumbbell Skullcrusher / Tricep Extension",
-          video: "male-dumbbell-skullcrusher-front_hgKANkM.mp4",
-        },
-        {
-          name: "Dumbbell Skullcrusher / Tricep Extension",
-          video: "male-dumbbell-skullcrusher-front_hgKANkM.mp4",
-        },
-        {
-          name: "Lateral Raise",
-          video: "male-dumbbell-lateral-raise-front.mp4",
-        },
-        {
-          name: "Lateral Raise",
-          video: "male-dumbbell-lateral-raise-front.mp4",
-        },
-        {
-          name: "Lateral Raise",
-          video: "male-dumbbell-lateral-raise-front.mp4",
-        },
-        {
-          name: "Lateral Raise",
-          video: "male-dumbbell-lateral-raise-front.mp4",
-        },
-        {
-          name: "Dumbbell Rear Delt Fly",
-          video: "male-dumbbell-rear-delt-fly-front.mp4",
-        },
-        {
-          name: "Dumbbell Rear Delt Fly",
-          video: "male-dumbbell-rear-delt-fly-front.mp4",
-        },
-        {
-          name: "Dumbbell Rear Delt Fly",
-          video: "male-dumbbell-rear-delt-fly-front.mp4",
-        },
-        {
-          name: "Dumbbell Rear Delt Fly",
-          video: "male-dumbbell-rear-delt-fly-front.mp4",
-        },
-        { name: "Curls", video: "curls.mp4" },
-        { name: "Curls", video: "curls.mp4" },
-        { name: "Curls", video: "curls.mp4" },
-        { name: "Curls", video: "curls.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Floor to Ceiling Press", video: "floor-to-ceiling-press.mp4" },
-        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
-        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
-        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
-        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
-      ],
-    },
-    {
-      name: "Leg Workout 1",
+      name: "Leg Routine 1",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -375,7 +125,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Leg Workout 2",
+      name: "Leg Routine 2",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -395,63 +145,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Leg Workout 2 (series)",
-      sets: 1,
-      workTime: 40,
-      restTime: 20,
-      exercises: [
-        {
-          name: "Squat",
-          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
-        },
-        {
-          name: "Squat",
-          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
-        },
-        {
-          name: "Squat",
-          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
-        },
-        {
-          name: "Squat",
-          video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
-        },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
-        { name: "Burpee Deadlift", video: "burpee-deadlift.mp4" },
-        {
-          name: "Calf Raise",
-          video: "male-Dumbbells-dumbbell-calf-raise-side.mp4",
-        },
-        {
-          name: "Calf Raise",
-          video: "male-Dumbbells-dumbbell-calf-raise-side.mp4",
-        },
-        {
-          name: "Calf Raise",
-          video: "male-Dumbbells-dumbbell-calf-raise-side.mp4",
-        },
-        {
-          name: "Calf Raise",
-          video: "male-Dumbbells-dumbbell-calf-raise-side.mp4",
-        },
-        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
-        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
-        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
-        { name: "Alternative Lunges", video: "alternative-lunges.mp4" },
-        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
-        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
-        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
-        { name: "Goblet Squat", video: "male-dumbbell-goblet-squat-front.mp4" },
-        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
-        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
-        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
-        { name: "Split Squat", video: "male-dumbbell-split-squat-front.mp4" },
-      ],
-    },
-    {
-      name: "Arm Workout 1",
+      name: "Arm Routine 1",
       sets: 4,
       workTime: 30,
       restTime: 30,
@@ -474,7 +168,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Arm Workout 2",
+      name: "Arm Routine 2",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -497,7 +191,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Back Workout 1",
+      name: "Back Routine 1",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -526,7 +220,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Back Workout 2",
+      name: "Back Routine 2",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -552,7 +246,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Abs Workout 1",
+      name: "Abs Routine 1",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -585,7 +279,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Beginner Dumbbell Workout",
+      name: "Beginner Dumbbell Routine",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -613,7 +307,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Beginner's Dumbbell workout",
+      name: "Beginner's Dumbbell routine",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -641,7 +335,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Intermediate Dumbbell Workout",
+      name: "Intermediate Dumbbell Routine",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -679,7 +373,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Advanced Dumbbell Workout",
+      name: "Advanced Dumbbell Routine",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -722,7 +416,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Beginner Bodyweight Workout",
+      name: "Beginner Bodyweight Routine",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -755,7 +449,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Intermediate Bodyweight Workout",
+      name: "Intermediate Bodyweight Routine",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -793,7 +487,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Advanced Bodyweight Workout",
+      name: "Advanced Bodyweight Routine",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -869,7 +563,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Ab Workout 1",
+      name: "Ab Routine 1",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -892,7 +586,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "Ab Workout 3",
+      name: "Ab Routine 3",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -910,7 +604,7 @@ export default function getWorkouts() {
       ],
     },
     {
-      name: "The 1 Dumbbell Workout",
+      name: "The 1 Dumbbell Routine",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -1041,15 +735,27 @@ export default function getWorkouts() {
         },
       ],
     },
-    {
-      name: "Debug",
-      sets: 2,
-      workTime: 5,
-      restTime: 5,
-      exercises: [
-        { name: "Squat Press", video: "squat-press.mp4" },
-        { name: "Press-up Row", video: "press-up-row.mp4" },
-      ],
-    },
   ];
+
+  return routines.map((workout) => {
+    const { sets, exercises } = workout;
+    let formattedExercises;
+
+    if (format === "circuit") {
+      formattedExercises = Array(sets)
+        .fill(null)
+        .flatMap(() => exercises);
+    } else if (format === "series") {
+      formattedExercises = exercises.flatMap((exercise) =>
+        Array(sets).fill(exercise)
+      );
+    } else {
+      formattedExercises = exercises;
+    }
+
+    return {
+      ...workout,
+      exercises: formattedExercises,
+    };
+  });
 }

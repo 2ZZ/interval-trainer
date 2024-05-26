@@ -4,7 +4,7 @@ import * as React from "react";
 export default function GetReady(props) {
   return (
     <div>
-      {props.workoutPhase === "countdown" && (
+      {props.currentRoutine.phase === "countdown" && (
         <>
           <Typography
             component={"span"}

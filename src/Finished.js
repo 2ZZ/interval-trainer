@@ -4,7 +4,7 @@ import * as React from "react";
 export default function Finished(props) {
   return (
     <div className="finishedTitle">
-      {props.workoutFinished !== undefined && props.workoutFinished && (
+      {props.routineFinished !== undefined && props.routineFinished && (
         <>
           <Typography
             component={"span"}

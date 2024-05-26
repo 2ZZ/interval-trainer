@@ -12,6 +12,8 @@ import IconButton from "@mui/material/IconButton";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import FileUpload from "@mui/icons-material/FileUpload";
 
+import { createLogger } from "./utils";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.secondary,
@@ -30,6 +32,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function History(props) {
+  const { debug } = props;
+  const log = createLogger(debug);
+
   let rows = JSON.parse(localStorage.getItem("workoutHistory") || "[]");
 
   function deleteHistoryItem(index) {
@@ -70,7 +75,7 @@ export default function History(props) {
     );
     element.setAttribute(
       "download",
-      `workout-history-${getFileSafeTimestamp()}.json`
+      `routine-history-${getFileSafeTimestamp()}.json`
     );
     element.style.display = "none";
     document.body.appendChild(element);
@@ -82,6 +87,7 @@ export default function History(props) {
   const handleUploadClick = () => {
     hiddenFileInput.current.click();
   };
+
   const uploadHistory = (event) => {
     const fileUploaded = event.target.files[0];
     if (fileUploaded && fileUploaded.type === "application/json") {
@@ -89,7 +95,6 @@ export default function History(props) {
       reader.onload = (event) => {
         try {
           const json = JSON.parse(event.target.result);
-          console.log(json);
           localStorage.setItem("workoutHistory", JSON.stringify(json));
         } catch (error) {
           console.error("Error parsing JSON", error);
@@ -97,7 +102,7 @@ export default function History(props) {
       };
       reader.readAsText(fileUploaded);
     } else {
-      console.log("Please upload a JSON file.");
+      log("Please upload a JSON file.");
     }
   };
 
@@ -121,7 +126,7 @@ export default function History(props) {
                 <b>Routine</b>
               </StyledTableCell>
               <StyledTableCell align="right">
-                <b>Paused time</b>
+                <b>Mode</b>
               </StyledTableCell>
               <StyledTableCell align="right">
                 <b>Total time</b>
@@ -139,7 +144,7 @@ export default function History(props) {
                 </StyledTableCell>
                 <StyledTableCell align="right">{row.Routine}</StyledTableCell>
                 <StyledTableCell align="right">
-                  {row["Paused time"]}
+                  {row.Mode || "Unknown"}
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row["Total time"]}

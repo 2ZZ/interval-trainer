@@ -6,34 +6,30 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 export default function BasicSelect(props) {
-  const [selectedRoutine, setSelectedRoutine] = React.useState(0);
+  const { format, setFormat } = props;
 
   const handleChange = (event) => {
-    setSelectedRoutine(event.target.value);
-    props.setCurrentRoutine((currentRoutine) => ({
-      ...currentRoutine,
-      spec: props.routines[event.target.value],
-    }));
+    setFormat(event.target.value);
   };
 
   return (
     <Box sx={{ minWidth: 120, p: 1 }}>
       <FormControl fullWidth>
         <InputLabel id="select-label" sx={{ color: "white", pt: 1 }}>
-          Routine
+          Format
         </InputLabel>
         <Select
           labelId="select-label"
           id="select"
-          value={selectedRoutine}
-          label="currentRoutine"
+          value={format}
+          label="format"
           onChange={handleChange}
           sx={{ color: "white" }}
         >
-          {props.routines.map((routine, index) => {
+          {["series", "circuit"].map((format, index) => {
             return (
-              <MenuItem key={index} value={index}>
-                {routine.name}
+              <MenuItem key={index} value={format}>
+                {format.charAt(0).toUpperCase() + format.slice(1)}
               </MenuItem>
             );
           })}
