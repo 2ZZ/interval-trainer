@@ -82,8 +82,6 @@ function Index() {
     weight: null,
   });
 
-  const [expanded, setExpanded] = useState(false);
-
   const countdownTime = 10;
   const debug = currentRoutine.spec.name === "Debug" ? true : false;
 
