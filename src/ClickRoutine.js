@@ -19,7 +19,6 @@ export default function ClickRoutine({
   setRoutineStartTime,
   set,
   setSet,
-  timers,
   setTimers,
 }) {
   const log = createLogger(debug);

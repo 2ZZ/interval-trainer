@@ -23,8 +23,6 @@ export default function Routine({
   setRoutineRewind,
   setRoutineStartTime,
   set,
-  setSet,
-  timers,
   setTimers,
 }) {
   const log = createLogger(debug);

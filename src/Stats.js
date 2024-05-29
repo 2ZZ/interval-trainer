@@ -19,7 +19,6 @@ export default function Stats(props) {
     historyUpdated,
     setHistoryUpdated,
     timers,
-    setTimers,
   } = props;
 
   const log = createLogger(debug);
