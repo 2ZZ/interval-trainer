@@ -1,5 +1,3 @@
-// Video source: https://musclewiki.com/
-
 export default function getEquipment() {
   return {
     weight: {
