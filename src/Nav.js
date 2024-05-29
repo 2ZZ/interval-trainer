@@ -43,7 +43,7 @@ export default function Nav(props) {
       /* for (let i = routineHistory.length - 1; i >= 0; i--) { */
       const routine = routineHistory[i];
 
-      if (routine.Routine === routineName) {
+      if (routine.Routine === routineName && routine.History) {
         const historyEntry = routine.History.find(
           (entry) => entry.exerciseIndex === exerciseIndex
         );
