@@ -102,7 +102,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Leg Routine 1",
+      name: "Legs 1",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -125,7 +125,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Leg Routine 2",
+      name: "Legs 2",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -145,7 +145,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Arm Routine 1",
+      name: "Arms 1",
       sets: 4,
       workTime: 30,
       restTime: 30,
@@ -168,7 +168,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Arm Routine 2",
+      name: "Arms 2",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -191,7 +191,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Back Routine 1",
+      name: "Back 1",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -220,7 +220,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Back Routine 2",
+      name: "Back 2",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -246,7 +246,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Abs Routine 1",
+      name: "Abs 1",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -279,7 +279,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Beginner Dumbbell Routine",
+      name: "Beginner Dumbbell",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -335,7 +335,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Intermediate Dumbbell Routine",
+      name: "Intermediate Dumbbell",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -373,7 +373,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Advanced Dumbbell Routine",
+      name: "Advanced Dumbbell",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -416,7 +416,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Beginner Bodyweight Routine",
+      name: "Beginner Bodyweight",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -449,7 +449,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Intermediate Bodyweight Routine",
+      name: "Intermediate Bodyweight",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -487,7 +487,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Advanced Bodyweight Routine",
+      name: "Advanced Bodyweight",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -563,7 +563,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Ab Routine 1",
+      name: "Ab 1",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -586,7 +586,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Ab Routine 3",
+      name: "Ab 3",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -604,7 +604,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "The 1 Dumbbell Routine",
+      name: "1 Dumbbell",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -632,7 +632,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Full Body Bodybuilding - Day 1",
+      name: "Full Body - Day 1",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -665,7 +665,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Full Body Bodybuilding - Day 2",
+      name: "Full Body - Day 2",
       sets: 4,
       workTime: 40,
       restTime: 20,
@@ -698,7 +698,7 @@ export default function getRoutines(format) {
       ],
     },
     {
-      name: "Full Body Bodybuilding - Day 3",
+      name: "Full Body - Day 3",
       sets: 4,
       workTime: 40,
       restTime: 20,

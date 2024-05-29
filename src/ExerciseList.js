@@ -1,22 +1,36 @@
-import * as React from "react";
+import React, { useEffect, useRef } from "react";
 
-export default function ExerciseList(props) {
-  let excercizeList = [];
-  props.currentRoutine.spec.exercises.forEach((excercize, index) => {
-    excercizeList.push(excercize);
-  });
+export default function ExerciseList({ currentRoutine, currentExercise }) {
+  const exercises = currentRoutine.spec.exercises;
+  const boldItemRef = useRef(null);
+
+  useEffect(() => {
+    if (boldItemRef.current) {
+      boldItemRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [currentExercise]);
 
   return (
-    <div className="excercize">
+    <div className="exercise">
       <ul>
-        {excercizeList.map((excercize, index) => {
-          return (props.currentExercise.index === undefined && index === 0) ||
-            index === props.currentExercise.index - 1 ? (
-            <li key={index}>
-              <b>{excercize.name}</b>
+        {exercises.map((exercise, index) => {
+          const isBold =
+            (currentExercise.index === undefined && index === 0) ||
+            index === currentExercise.index - 1;
+
+          return (
+            <li
+              key={index}
+              ref={isBold ? boldItemRef : null}
+              style={{
+                fontWeight: isBold ? "bold" : "normal",
+              }}
+            >
+              {exercise.name}
             </li>
-          ) : (
-            <li key={index}>{excercize.name}</li>
           );
         })}
       </ul>

@@ -82,6 +82,8 @@ function Index() {
     weight: null,
   });
 
+  const [expanded, setExpanded] = useState(false);
+
   const countdownTime = 10;
   const debug = currentRoutine.spec.name === "Debug" ? true : false;
 
@@ -236,12 +238,22 @@ function Index() {
                         p: 2,
                         display: "flex",
                         flexDirection: "column",
+                        maxHeight: "250px",
+                        overflow: "hidden",
+                        position: "relative",
                       }}
                     >
-                      <ExerciseList
-                        currentExercise={currentExercise}
-                        currentRoutine={currentRoutine}
-                      />
+                      <Box
+                        sx={{
+                          overflow: "auto",
+                          maxHeight: "250px",
+                        }}
+                      >
+                        <ExerciseList
+                          currentExercise={currentExercise}
+                          currentRoutine={currentRoutine}
+                        />
+                      </Box>
                     </Paper>
                   </Box>
                 </Grid>

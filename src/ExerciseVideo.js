@@ -4,7 +4,7 @@ import "./index.css";
 // Dangerous HTML due to video bug: https://github.com/facebook/react/issues/10389
 
 export default function ExerciseVideo(props) {
-  const { currentMode, currentRoutine, currentExercise } = props;
+  const { currentMode, currentRoutine, currentExercise, routinePaused } = props;
 
   const placeholderImage =
     "static/images/iad_Exersize._Weight_Lifting._Fitness._Blended_with_binary_cod_7427d93c-c4da-4880-814d-551bf85b5820.png";
@@ -40,7 +40,7 @@ export default function ExerciseVideo(props) {
     }
 
     let overlayText = "";
-    if (props.routinePaused) {
+    if (routinePaused) {
       overlayText = "Paused";
     } else if (currentRoutine.phase === "rest") {
       overlayText = `Upcoming: ${nextExerciseName}`;
@@ -54,7 +54,7 @@ export default function ExerciseVideo(props) {
         currentRoutine.spec.exercises.length
       })`;
     let videoHTML;
-    if (currentExercise.started && !props.routinePaused) {
+    if (currentExercise.started && !routinePaused) {
       videoHTML = `
 <video
   loop
