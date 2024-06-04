@@ -61,6 +61,7 @@ export default function WeightHistory(props) {
         0
     );
     log("selectedWeight is: " + selectedWeight);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRoutine.spec.name, currentExercise.index]);
 
   return (

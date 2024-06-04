@@ -231,7 +231,6 @@ function Index() {
                         routineStartTime={routineStartTime}
                         setRoutineStartTime={setRoutineStartTime}
                         currentMode={currentMode}
-                        currentExercise={currentExercise}
                         format={format}
                         routineHistory={routineHistory}
                         debug={debug}

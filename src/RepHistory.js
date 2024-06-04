@@ -62,6 +62,7 @@ function RepHistory(props) {
         0
     );
     log("selectedReps is: " + selectedReps);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRoutine.spec.name, currentExercise.index]);
 
   return (
