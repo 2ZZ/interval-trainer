@@ -17,10 +17,10 @@ export default function getRoutines(format) {
       exercises: [
         "squat",
         "shoulder-press",
-        "lunge-curl-lh",
-        "lunge-curl-rh",
-        "dumbbell-situp",
         "floor-fly",
+        "dumbbell-situp",
+        "forward-lunges",
+        "sumo-squat",
       ],
     },
     {
@@ -31,10 +31,10 @@ export default function getRoutines(format) {
       exercises: [
         "goblet-squat",
         "dumbbell-situp",
-        "press-up-row",
+        "press-up",
         "hammer-curl",
-        "floor-to-ceiling-press",
-        "deadlift",
+        "overhead-press",
+        "calf-raise",
       ],
     },
     {

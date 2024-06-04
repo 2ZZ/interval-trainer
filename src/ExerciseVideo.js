@@ -12,8 +12,7 @@ export default function ExerciseVideo(props) {
     exercises,
   } = props;
 
-  const placeholderImage =
-    "static/images/iad_Exersize._Weight_Lifting._Fitness._Blended_with_binary_cod_7427d93c-c4da-4880-814d-551bf85b5820.png";
+  const placeholderImage = "static/images/logo.wepb";
 
   if (["countdown", "rest", "work"].includes(currentRoutine.phase)) {
     const currentExerciseIndex = currentExercise.index - 1;

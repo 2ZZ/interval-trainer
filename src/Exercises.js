@@ -51,6 +51,20 @@ export default function getExercises(format) {
       defaults: { reps: 10, weight: 20 },
     },
     {
+      displayName: "Press Up",
+      name: "press-up",
+      video:
+        "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-push-up-side.mp4",
+      defaults: { reps: 15, weight: 0 },
+    },
+    {
+      displayName: "Overhead Press",
+      name: "overhead-press",
+      video:
+        "https://media.musclewiki.com/media/uploads/videos/branded/male-barbell-overhead-press-side_1DIUbfS.mp4",
+      defaults: { reps: 10, weight: 20 },
+    },
+    {
       displayName: "Hammer Curl",
       name: "hammer-curl",
       video: "male-dumbbell-hammer-curl-front.mp4",
