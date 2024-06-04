@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
-export default function ExerciseList({ currentRoutine, currentExercise }) {
-  const exercises = currentRoutine.spec.exercises;
+export default function ExerciseList(props) {
+  const { exercises, currentRoutine, currentExercise } = props;
   const boldItemRef = useRef(null);
 
   useEffect(() => {
@@ -13,27 +13,65 @@ export default function ExerciseList({ currentRoutine, currentExercise }) {
     }
   }, [currentExercise]);
 
-  return (
-    <div className="exercise">
-      <ul>
-        {exercises.map((exercise, index) => {
-          const isBold =
-            (currentExercise.index === undefined && index === 0) ||
-            index === currentExercise.index - 1;
+  if (currentRoutine.phase === "ready") {
+    return (
+      <div className="exercise">
+        <ul>
+          {currentRoutine.spec.exercises
+            .filter(
+              (exercise, index, self) =>
+                index === self.findIndex((e) => e === exercise)
+            )
+            .map((exerciseName, index) => {
+              const exerciseDetails = exercises.find(
+                (e) => e.name === exerciseName
+              );
 
-          return (
-            <li
-              key={index}
-              ref={isBold ? boldItemRef : null}
-              style={{
-                fontWeight: isBold ? "bold" : "normal",
-              }}
-            >
-              {exercise.name}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
+              const isBold =
+                (currentExercise.index === undefined && index === 0) ||
+                index === currentExercise.index - 1;
+
+              return (
+                <li
+                  key={index}
+                  ref={isBold ? boldItemRef : null}
+                  style={{
+                    fontWeight: isBold ? "bold" : "normal",
+                  }}
+                >
+                  {exerciseDetails.displayName}
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    );
+  } else {
+    return (
+      <div className="exercise">
+        <ul>
+          {currentRoutine.spec.exercises.map((exerciseName, index) => {
+            const exerciseDetails = exercises.find(
+              (e) => e.name === exerciseName
+            );
+            const isBold =
+              (currentExercise.index === undefined && index === 0) ||
+              index === currentExercise.index - 1;
+
+            return (
+              <li
+                key={index}
+                ref={isBold ? boldItemRef : null}
+                style={{
+                  fontWeight: isBold ? "bold" : "normal",
+                }}
+              >
+                {exerciseDetails.displayName}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
 }

@@ -4,7 +4,13 @@ import "./index.css";
 // Dangerous HTML due to video bug: https://github.com/facebook/react/issues/10389
 
 export default function ExerciseVideo(props) {
-  const { currentMode, currentRoutine, currentExercise, routinePaused } = props;
+  const {
+    currentMode,
+    currentRoutine,
+    currentExercise,
+    routinePaused,
+    exercises,
+  } = props;
 
   const placeholderImage =
     "static/images/iad_Exersize._Weight_Lifting._Fitness._Blended_with_binary_cod_7427d93c-c4da-4880-814d-551bf85b5820.png";
@@ -15,24 +21,27 @@ export default function ExerciseVideo(props) {
       currentExerciseIndex === currentRoutine.spec.exercises.length - 1
         ? 0
         : currentExerciseIndex + 1;
-    const currentExerciseVideo =
-      currentRoutine.spec.exercises[currentExerciseIndex]?.video ??
-      "currentExerciseVideonotfound";
-    const nextExerciseVideo =
-      currentRoutine.spec.exercises[nextExerciseIndex]?.video ??
-      "nextExerciseVideonotfound";
+
     const currentExerciseName =
       currentRoutine.spec.exercises[currentExerciseIndex]?.name ?? "";
     const nextExerciseName =
       currentRoutine.spec.exercises[nextExerciseIndex]?.name ?? "";
 
+    const currentExerciseDetails = exercises.find(
+      (e) => e.name === currentExerciseName
+    );
+
+    const nextExerciseDetails = exercises.find(
+      (e) => e.name === nextExerciseName
+    );
+
     let video = "";
     if (currentRoutine.phase === "rest") {
-      video = nextExerciseVideo;
+      video = nextExerciseDetails?.video ?? "nextExerciseVideonotfound";
     } else if (currentRoutine.phase === "work") {
-      video = currentExerciseVideo;
+      video = currentExerciseDetails?.video ?? "currentExerciseVideonotfound";
     } else if (currentMode.name === "click") {
-      video = currentExerciseVideo;
+      video = currentExerciseDetails?.video ?? "currentExerciseVideonotfound";
     }
 
     if (!video.startsWith("http")) {
@@ -48,11 +57,6 @@ export default function ExerciseVideo(props) {
       overlayText = currentExerciseName;
     }
 
-    overlayText =
-      overlayText +
-      ` (${currentExerciseIndex + 1} / ${
-        currentRoutine.spec.exercises.length
-      })`;
     let videoHTML;
     if (currentExercise.started && !routinePaused) {
       videoHTML = `

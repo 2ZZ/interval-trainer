@@ -95,6 +95,7 @@ export default function Routine({
       ...currentRoutine,
       percentComplete: 0,
       phase: "ready",
+      lastSet: false,
     }));
     setTimers({ total: 0, paused: 0, work: 0, rest: 0 });
     setCurrentExercise((currentExercise) => ({

@@ -20,12 +20,13 @@ export default function ClickRoutine({
   set,
   setSet,
   setTimers,
+  selectedWeight,
+  selectedReps,
 }) {
   const log = createLogger(debug);
   const interval = useRef(null);
 
   const intervalTime = debug ? 100 : 1000;
-  const startDelay = countdownTime * (debug ? 10 : 1000);
 
   function calculateRoutinePercentComplete() {
     if (!routineStarted && !routineFinished) {
@@ -54,6 +55,7 @@ export default function ClickRoutine({
       percentComplete: 0,
       history: [],
       phase: "ready",
+      lastSet: false,
     }));
     setTimers({ total: 0, paused: 0, work: 0, rest: 0 });
     setCurrentExercise(1);
@@ -75,14 +77,11 @@ export default function ClickRoutine({
         phase: "work",
       }));
       setRoutineStarted(true);
-      log(`Starting routine after delay: ${startDelay}`);
-      setTimeout(() => {
-        startRoutineTimer();
-        setCurrentExercise((currentExercise) => ({
-          ...currentExercise,
-          started: true,
-        }));
-      }, startDelay);
+      startRoutineTimer();
+      setCurrentExercise((currentExercise) => ({
+        ...currentExercise,
+        started: true,
+      }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routineStarted]);
@@ -126,6 +125,17 @@ export default function ClickRoutine({
   };
 
   useEffect(() => {
+    if (currentExercise.index === currentRoutine.spec.exercises.length) {
+      log("This is the last set");
+      setCurrentRoutine((currentRoutine) => ({
+        ...currentRoutine,
+        lastSet: true,
+      }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentExercise]);
+
+  useEffect(() => {
     log(`Set change triggered effect (${JSON.stringify(set, null, 2)})`);
     if (set.isComplete) {
       if (currentExercise.index < currentRoutine.spec.exercises.length) {
@@ -138,7 +148,6 @@ export default function ClickRoutine({
         log("Routine complete.");
         stopRoutine();
       }
-
       setSet((set) => ({
         ...set,
         isComplete: false,
@@ -150,7 +159,8 @@ export default function ClickRoutine({
           {
             exerciseIndex: currentExercise.index,
             set: currentExercise.currentSet,
-            weight: set.weight,
+            weight: selectedWeight,
+            reps: selectedReps,
           },
         ],
       }));

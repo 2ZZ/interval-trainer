@@ -132,6 +132,9 @@ export default function History(props) {
                 <b>Total time</b>
               </StyledTableCell>
               <StyledTableCell align="right">
+                <b>Weight</b>
+              </StyledTableCell>
+              <StyledTableCell align="right">
                 <b>Action</b>
               </StyledTableCell>
             </TableRow>
@@ -149,7 +152,15 @@ export default function History(props) {
                 <StyledTableCell align="right">
                   {row["Total time"]}
                 </StyledTableCell>
-
+                <StyledTableCell align="right">
+                  {row.History
+                    ? row.History.reduce(
+                        (acc, curr) => acc + parseInt(curr.weight, 10),
+                        0
+                      )
+                    : "?"}
+                  KG
+                </StyledTableCell>
                 <StyledTableCell align="right">
                   <IconButton onClick={() => deleteHistoryItem(index)}>
                     <DeleteIcon color="action" />

@@ -1,7 +1,7 @@
 export default function getModes() {
   return [
     {
-      displayName: "Manual",
+      displayName: "Rep",
       name: "click",
     },
     {

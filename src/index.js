@@ -16,7 +16,7 @@ import RoutineSelect from "./RoutineSelect";
 import FormatSelect from "./FormatSelect";
 import ClickRoutine from "./ClickRoutine";
 import TimedRoutine from "./TimedRoutine";
-import Nav from "./Nav";
+import Controls from "./Controls";
 import ExerciseList from "./ExerciseList";
 import ExerciseVideo from "./ExerciseVideo";
 import Timer from "./Timer";
@@ -24,8 +24,11 @@ import Stats from "./Stats";
 import Finished from "./Finished";
 import getModes from "./Modes";
 import getRoutines from "./Routines";
+import getExercises from "./Exercises";
 import GetReady from "./GetReady";
 import History from "./History";
+import WeightHistory from "./WeightHistory";
+import RepHistory from "./RepHistory";
 
 // Top bar
 const AppBar = styled(MuiAppBar, {
@@ -45,7 +48,10 @@ function Index() {
   const [modes] = useState(getModes());
   const [format, setFormat] = useState("series");
   const [routines, setRoutines] = useState(getRoutines(format));
+  const exercises = getExercises();
   const routineHistory = JSON.parse(localStorage.getItem("workoutHistory"));
+  const [selectedWeight, setSelectedWeight] = useState(0);
+  const [selectedReps, setSelectedReps] = useState(10);
 
   const [routineReset, setRoutineReset] = useState(false);
   const [routineRewind, setRoutineRewind] = useState(false);
@@ -62,6 +68,7 @@ function Index() {
     phase: "ready",
     history: [],
     percentComplete: 0,
+    lastSet: false,
   });
 
   const [timers, setTimers] = useState({
@@ -126,6 +133,8 @@ function Index() {
           setSet={setSet}
           timers={timers}
           setTimers={setTimers}
+          selectedWeight={selectedWeight}
+          selectedReps={selectedReps}
         />
       )}
       {currentMode.name === "timer" && (
@@ -214,6 +223,7 @@ function Index() {
                       <Stats
                         currentSet={currentExercise.currentSet}
                         currentRoutine={currentRoutine}
+                        currentExercise={currentExercise}
                         historyUpdated={historyUpdated}
                         setHistoryUpdated={setHistoryUpdated}
                         routineFinished={routineFinished}
@@ -248,6 +258,7 @@ function Index() {
                         }}
                       >
                         <ExerciseList
+                          exercises={exercises}
                           currentExercise={currentExercise}
                           currentRoutine={currentRoutine}
                         />
@@ -271,6 +282,7 @@ function Index() {
                         currentExercise={currentExercise}
                         routinePaused={routinePaused}
                         currentMode={currentMode}
+                        exercises={exercises}
                       />
                       <Finished routineFinished={routineFinished} />
                     </Paper>
@@ -299,11 +311,73 @@ function Index() {
                       </Paper>
                     </Box>
                   )}
+
+                  {currentMode.name === "click" &&
+                    currentRoutine.phase !== "ready" && (
+                      <Box sx={{ m: 2 }}>
+                        <Paper
+                          sx={{
+                            p: 2,
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <Typography
+                            style={{ fontWeight: "bold", textAlign: "center" }}
+                            gutterBottom
+                          >
+                            Weight
+                          </Typography>
+                          <WeightHistory
+                            debug={debug}
+                            exercises={exercises}
+                            currentRoutine={currentRoutine}
+                            routineHistory={routineHistory}
+                            currentExercise={currentExercise}
+                            routineStarted={routineStarted}
+                            routinePaused={routinePaused}
+                            selectedWeight={selectedWeight}
+                            setSelectedWeight={setSelectedWeight}
+                          />
+                        </Paper>
+                      </Box>
+                    )}
+                  {currentMode.name === "click" &&
+                    currentRoutine.phase !== "ready" && (
+                      <Box sx={{ m: 2 }}>
+                        <Paper
+                          sx={{
+                            p: 2,
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <Typography
+                            style={{ fontWeight: "bold", textAlign: "center" }}
+                            gutterBottom
+                          >
+                            Reps
+                          </Typography>
+                          <RepHistory
+                            debug={debug}
+                            currentRoutine={currentRoutine}
+                            routineHistory={routineHistory}
+                            currentExercise={currentExercise}
+                            routineStarted={routineStarted}
+                            routinePaused={routinePaused}
+                            exercises={exercises}
+                            selectedReps={selectedReps}
+                            setSelectedReps={setSelectedReps}
+                          />
+                        </Paper>
+                      </Box>
+                    )}
+
                   <Box sx={{ m: 2 }}>
                     <Paper
                       sx={{ p: 2, display: "flex", flexDirection: "column" }}
                     >
-                      <Nav
+                      <Controls
                         routineStarted={routineStarted}
                         routinePaused={routinePaused}
                         currentRoutine={currentRoutine}
@@ -313,11 +387,8 @@ function Index() {
                         onClickStop={() => setRoutineStopped(true)}
                         onClickReset={() => setRoutineReset(true)}
                         onClickRewind={() => setRoutineRewind(true)}
-                        set={set}
                         setSet={setSet}
                         currentMode={currentMode}
-                        routineHistory={routineHistory}
-                        currentExercise={currentExercise}
                       />
                     </Paper>
                   </Box>

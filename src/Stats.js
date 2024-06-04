@@ -12,6 +12,7 @@ export default function Stats(props) {
     format,
     currentMode,
     currentRoutine,
+    currentExercise,
     routineStarted,
     routineFinished,
     routineStartTime,
@@ -110,7 +111,8 @@ export default function Stats(props) {
         <b>Routine:</b> {currentRoutine.spec.name} ({format})
       </p>
       <p>
-        <b>Completed:</b> {currentRoutine.percentComplete}%
+        <b>Completed:</b> {currentRoutine.percentComplete}% (
+        {currentExercise.index}/{currentRoutine.spec.exercises.length})
       </p>
       {currentMode === "timed" && (
         <p>
