@@ -12,7 +12,7 @@ export default function ExerciseVideo(props) {
     exercises,
   } = props;
 
-  const placeholderImage = "static/images/logo.wepb";
+  const placeholderImage = "static/images/logo.webp";
 
   if (["countdown", "rest", "work"].includes(currentRoutine.phase)) {
     const currentExerciseIndex = currentExercise.index - 1;
