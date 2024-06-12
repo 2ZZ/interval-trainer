@@ -201,6 +201,48 @@ const RoutineSelector = (props) => {
                       )}
                     </ul>
                   </Typography>
+                  {selectedRoutine.timesCompleted > 0 && (
+                    <div>
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          ml: 3,
+                        }}
+                      >
+                        Stats
+                      </Typography>
+                      <Typography
+                        color="text.secondary"
+                        sx={{
+                          ml: 3,
+                        }}
+                        component="div"
+                      >
+                        <ul>
+                          <li>
+                            <Typography>
+                              Last completed: {selectedRoutine.lastDate}
+                            </Typography>
+                          </li>
+                          <li>
+                            <Typography>
+                              Times completed: {selectedRoutine.timesCompleted}
+                            </Typography>
+                          </li>
+                          <li>
+                            <Typography>
+                              Last time taken: {selectedRoutine.lastTimeTaken}
+                            </Typography>
+                          </li>
+                          <li>
+                            <Typography>
+                              Last mode used: {selectedRoutine.lastMode}
+                            </Typography>
+                          </li>
+                        </ul>
+                      </Typography>
+                    </div>
+                  )}
                   <Box
                     sx={{
                       display: "flex",
