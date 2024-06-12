@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 
 import ModeSelect from "./ModeSelect";
 import RoutineSelect from "./RoutineSelect";
@@ -30,7 +31,6 @@ import History from "./History";
 import WeightHistory from "./WeightHistory";
 import RepHistory from "./RepHistory";
 
-// Top bar
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -48,6 +48,7 @@ function Index() {
   const [modes] = useState(getModes());
   const [format, setFormat] = useState("series");
   const [routines, setRoutines] = useState(getRoutines(format));
+  const [showRoutineSelectModal, setShowRoutineSelectModal] = useState(true);
   const exercises = getExercises();
   const routineHistory = JSON.parse(localStorage.getItem("workoutHistory"));
   const [selectedWeight, setSelectedWeight] = useState(0);
@@ -169,7 +170,6 @@ function Index() {
       <ThemeProvider theme={mdTheme}>
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
-
           <AppBar position="absolute" open={true}>
             <Toolbar>
               <Typography
@@ -181,15 +181,28 @@ function Index() {
               >
                 Routine Assistant
               </Typography>
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={() => setShowRoutineSelectModal(true)}
+                >
+                  ReSelect Workout
+                </Button>
+                <RoutineSelect
+                  debug={debug}
+                  exercises={exercises}
+                  routines={routines}
+                  currentRoutine={currentRoutine}
+                  setCurrentRoutine={setCurrentRoutine}
+                  isOpen={showRoutineSelectModal}
+                  onClose={() => setShowRoutineSelectModal(false)}
+                  routineHistory={routineHistory}
+                />
+              </div>
               <ModeSelect
                 modes={modes}
                 currentMode={currentMode}
                 setCurrentMode={setCurrentMode}
-              />
-              <RoutineSelect
-                routines={routines}
-                currentRoutine={currentRoutine}
-                setCurrentRoutine={setCurrentRoutine}
               />
               <FormatSelect format={format} setFormat={setFormat} />
             </Toolbar>
@@ -282,6 +295,7 @@ function Index() {
                         routinePaused={routinePaused}
                         currentMode={currentMode}
                         exercises={exercises}
+                        debug={debug}
                       />
                       <Finished routineFinished={routineFinished} />
                     </Paper>

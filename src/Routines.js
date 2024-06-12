@@ -3,13 +3,7 @@
 export default function getRoutines(format) {
   const routines = [
     {
-      name: "Debug",
-      sets: 2,
-      workTime: 5,
-      restTime: 5,
-      exercises: ["squat-press", "press-up-row"],
-    },
-    {
+      id: 2,
       name: "Balanced 1",
       sets: 4,
       workTime: 40,
@@ -24,6 +18,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 3,
       name: "Balanced 2",
       sets: 4,
       workTime: 40,
@@ -38,6 +33,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 4,
       name: "Balanced 3",
       sets: 4,
       workTime: 40,
@@ -52,6 +48,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 5,
       name: "Balanced 4",
       sets: 4,
       workTime: 40,
@@ -66,6 +63,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 6,
       name: "Legs 1",
       sets: 4,
       workTime: 40,
@@ -80,6 +78,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 7,
       name: "Legs 2",
       sets: 4,
       workTime: 40,
@@ -94,6 +93,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 8,
       name: "Arms 1",
       sets: 4,
       workTime: 30,
@@ -108,6 +108,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 9,
       name: "Arms 2",
       sets: 4,
       workTime: 40,
@@ -122,6 +123,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 10,
       name: "Back 1",
       sets: 4,
       workTime: 40,
@@ -136,6 +138,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 11,
       name: "Back 2",
       sets: 4,
       workTime: 40,
@@ -150,6 +153,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 12,
       name: "Abs 1",
       sets: 4,
       workTime: 40,
@@ -164,6 +168,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 13,
       name: "Beginner Dumbbell",
       sets: 4,
       workTime: 40,
@@ -176,6 +181,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 14,
       name: "Beginner's Dumbbell routine",
       sets: 4,
       workTime: 40,
@@ -188,6 +194,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 15,
       name: "Intermediate Dumbbell",
       sets: 4,
       workTime: 40,
@@ -202,6 +209,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 16,
       name: "Advanced Dumbbell",
       sets: 4,
       workTime: 40,
@@ -217,6 +225,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 17,
       name: "Beginner Bodyweight",
       sets: 4,
       workTime: 40,
@@ -230,6 +239,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 18,
       name: "Intermediate Bodyweight",
       sets: 4,
       workTime: 40,
@@ -244,6 +254,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 19,
       name: "Advanced Bodyweight",
       sets: 4,
       workTime: 40,
@@ -260,6 +271,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 20,
       name: "Core Conditioning",
       sets: 4,
       workTime: 40,
@@ -272,6 +284,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 21,
       name: "Ab 1",
       sets: 4,
       workTime: 40,
@@ -279,6 +292,7 @@ export default function getRoutines(format) {
       exercises: ["crunches", "hanging-knee-raises", "bicycle-crunch"],
     },
     {
+      id: 22,
       name: "Ab 3",
       sets: 4,
       workTime: 40,
@@ -286,6 +300,7 @@ export default function getRoutines(format) {
       exercises: ["laying-leg-raises", "dumbbell-russian-twist"],
     },
     {
+      id: 23,
       name: "1 Dumbbell",
       sets: 4,
       workTime: 40,
@@ -298,6 +313,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 24,
       name: "Full Body - Day 1",
       sets: 4,
       workTime: 40,
@@ -311,6 +327,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 25,
       name: "Full Body - Day 2",
       sets: 4,
       workTime: 40,
@@ -324,6 +341,7 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 26,
       name: "Full Body - Day 3",
       sets: 4,
       workTime: 40,
@@ -336,6 +354,14 @@ export default function getRoutines(format) {
         "plate-full-lateral-raise",
         "machine-leg-extension",
       ],
+    },
+    {
+      id: 1,
+      name: "Debug",
+      sets: 2,
+      workTime: 5,
+      restTime: 5,
+      exercises: ["squat-press", "press-up-row"],
     },
   ];
 

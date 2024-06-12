@@ -1,6 +1,8 @@
 import React from "react";
 import "./index.css";
 
+import { createLogger } from "./utils";
+
 // Dangerous HTML due to video bug: https://github.com/facebook/react/issues/10389
 
 export default function ExerciseVideo(props) {
@@ -10,9 +12,11 @@ export default function ExerciseVideo(props) {
     currentExercise,
     routinePaused,
     exercises,
+    debug,
   } = props;
 
-  const placeholderImage = "static/images/logo.webp";
+  const log = createLogger(debug);
+  const placeholderImage = "/interval-trainer/static/images/logo.webp";
 
   if (["countdown", "rest", "work"].includes(currentRoutine.phase)) {
     const currentExerciseIndex = currentExercise.index - 1;
@@ -22,9 +26,9 @@ export default function ExerciseVideo(props) {
         : currentExerciseIndex + 1;
 
     const currentExerciseName =
-      currentRoutine.spec.exercises[currentExerciseIndex]?.name ?? "";
+      currentRoutine.spec.exercises[currentExerciseIndex] ?? "";
     const nextExerciseName =
-      currentRoutine.spec.exercises[nextExerciseIndex]?.name ?? "";
+      currentRoutine.spec.exercises[nextExerciseIndex] ?? "";
 
     const currentExerciseDetails = exercises.find(
       (e) => e.name === currentExerciseName
@@ -44,7 +48,7 @@ export default function ExerciseVideo(props) {
     }
 
     if (!video.startsWith("http")) {
-      video = `static/videos/${video}`;
+      video = `/interval-trainer/static/videos/${video}`;
     }
 
     let overlayText = "";
@@ -95,12 +99,12 @@ export default function ExerciseVideo(props) {
       </div>
     );
   } else {
-    if (currentRoutine && currentRoutine.phase !== "countdown") {
-      return (
-        <div className="exerciseAnimation">
-          <img width="100%" src={placeholderImage} alt="Homepage" />
-        </div>
-      );
+    if (
+      currentRoutine &&
+      currentRoutine.phase !== "countdown" &&
+      currentRoutine.phase !== "finished"
+    ) {
+      return <div className="exerciseAnimation">Click START to begin</div>;
     }
   }
 }
