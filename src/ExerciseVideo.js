@@ -1,8 +1,6 @@
 import React from "react";
 import "./index.css";
 
-import { createLogger } from "./utils";
-
 // Dangerous HTML due to video bug: https://github.com/facebook/react/issues/10389
 
 export default function ExerciseVideo(props) {
@@ -12,11 +10,7 @@ export default function ExerciseVideo(props) {
     currentExercise,
     routinePaused,
     exercises,
-    debug,
   } = props;
-
-  const log = createLogger(debug);
-  const placeholderImage = "/interval-trainer/static/images/logo.webp";
 
   if (["countdown", "rest", "work"].includes(currentRoutine.phase)) {
     const currentExerciseIndex = currentExercise.index - 1;

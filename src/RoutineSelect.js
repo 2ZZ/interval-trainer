@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from "react";
 import Modal from "./Modal";
-import { createLogger } from "./utils";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -9,7 +8,6 @@ import { Card, Typography, Box, Button, Link } from "@mui/material";
 
 const RoutineSelector = (props) => {
   const {
-    debug,
     isOpen,
     onClose,
     exercises,
@@ -18,7 +16,6 @@ const RoutineSelector = (props) => {
     routineHistory,
   } = props;
 
-  const log = createLogger(debug);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
 
   const getUsageCount = (routineName) => {
@@ -71,6 +68,7 @@ const RoutineSelector = (props) => {
         }),
       }))
       .sort((a, b) => b.usageCount - a.usageCount);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routines, exercises, routineHistory]);
 
   const onSelect = (routine) => {
