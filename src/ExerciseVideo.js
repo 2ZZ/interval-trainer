@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import { Box, Typography } from "@mui/material";
 
 // Dangerous HTML due to video bug: https://github.com/facebook/react/issues/10389
 
@@ -12,79 +13,68 @@ export default function ExerciseVideo(props) {
     exercises,
   } = props;
 
-  if (["countdown", "rest", "work"].includes(currentRoutine.phase)) {
-    const currentExerciseIndex = currentExercise.index - 1;
-    const nextExerciseIndex =
-      currentExerciseIndex === currentRoutine.spec.exercises.length - 1
-        ? 0
-        : currentExerciseIndex + 1;
+  const currentExerciseIndex =
+    currentExercise.index > 0
+      ? currentExercise.index - 1
+      : currentExercise.index;
+  const nextExerciseIndex =
+    currentExerciseIndex === currentRoutine.spec.exercises.length - 1
+      ? 0
+      : currentExerciseIndex + 1;
 
-    const currentExerciseName =
-      currentRoutine.spec.exercises[currentExerciseIndex] ?? "";
-    const nextExerciseName =
-      currentRoutine.spec.exercises[nextExerciseIndex] ?? "";
+  const currentExerciseName =
+    currentRoutine.spec.exercises[currentExerciseIndex] ?? "";
+  const nextExerciseName =
+    currentRoutine.spec.exercises[nextExerciseIndex] ?? "";
 
-    const currentExerciseDetails = exercises.find(
-      (e) => e.name === currentExerciseName
-    );
+  const currentExerciseDetails = exercises.find(
+    (e) => e.name === currentExerciseName
+  );
 
-    const nextExerciseDetails = exercises.find(
-      (e) => e.name === nextExerciseName
-    );
+  const nextExerciseDetails = exercises.find(
+    (e) => e.name === nextExerciseName
+  );
 
-    let video = "";
-    if (currentRoutine.phase === "rest") {
-      video = nextExerciseDetails?.video ?? "nextExerciseVideonotfound";
-    } else if (currentRoutine.phase === "work") {
-      video = currentExerciseDetails?.video ?? "currentExerciseVideonotfound";
-    } else if (currentMode.name === "click") {
-      video = currentExerciseDetails?.video ?? "currentExerciseVideonotfound";
-    }
+  let video = "";
+  if (currentRoutine.phase === "rest") {
+    video = nextExerciseDetails?.video ?? "nextExerciseVideonotfound";
+  } else if (currentRoutine.phase === "work") {
+    video = currentExerciseDetails?.video ?? "currentExerciseVideonotfoundWork";
+  } else if (currentMode.name === "click") {
+    video =
+      currentExerciseDetails?.video ?? "currentExerciseVideonotfoundClick";
+  }
 
-    if (!video.startsWith("http")) {
-      video = `/interval-trainer/static/videos/${video}`;
-    }
+  if (!video.startsWith("http")) {
+    video = `/interval-trainer/static/videos/${video}`;
+  }
 
-    let overlayText = "";
-    if (routinePaused) {
-      overlayText = "Paused";
-    } else if (currentRoutine.phase === "rest") {
-      overlayText = `Upcoming: ${nextExerciseName}`;
-    } else if (currentRoutine.phase === "work") {
-      overlayText = currentExerciseName;
-    }
+  let overlayText = "";
+  if (routinePaused) {
+    overlayText = "Paused";
+  } else if (currentRoutine.phase === "rest") {
+    overlayText = `Upcoming: ${nextExerciseName}`;
+  } else if (currentRoutine.phase === "work") {
+    overlayText = currentExerciseName;
+  }
 
-    let videoHTML;
-    if (currentExercise.started && !routinePaused) {
-      videoHTML = `
-<video
-  loop
-  muted
-  autoplay
-  playsinline
-  width="100%"
-  src="${video}"
-  type="video/mp4"
-/>
-  `;
-    } else {
-      videoHTML = `
-<video
-  loop
-  muted
-  playsinline
-  width="100%"
-  src="${video}"
-  type="video/mp4"
-/>
-  `;
-    }
-
+  let HTML;
+  if (currentExercise.started && !routinePaused) {
     return (
-      <div className="exerciseAnimation">
+      <div sx={{ position: "relative", textAlign: "center" }}>
         <div
           dangerouslySetInnerHTML={{
-            __html: videoHTML,
+            __html: `
+          <video
+            loop
+            muted
+            autoplay
+            playsinline
+            width="100%"
+            src="${video}"
+            type="video/mp4"
+          />
+            `,
           }}
         />
         <div className="video-overlay">
@@ -93,12 +83,21 @@ export default function ExerciseVideo(props) {
       </div>
     );
   } else {
-    if (
-      currentRoutine &&
-      currentRoutine.phase !== "countdown" &&
-      currentRoutine.phase !== "finished"
-    ) {
-      return <div className="exerciseAnimation">Click START to begin</div>;
-    }
+    return (
+      <Box>
+        <Typography
+          component={"span"}
+          sx={{
+            p: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            color: "secondary.main",
+          }}
+        >
+          <h2>Click START to begin</h2>
+        </Typography>
+      </Box>
+    );
   }
 }

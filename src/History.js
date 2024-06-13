@@ -38,6 +38,7 @@ export default function History(props) {
   let rows = JSON.parse(localStorage.getItem("workoutHistory") || "[]");
 
   function deleteHistoryItem(index) {
+    log("Deleting history item");
     const statsStr = localStorage.getItem("workoutHistory");
     let stats = JSON.parse(statsStr);
     let newStats = [];
@@ -107,9 +108,11 @@ export default function History(props) {
   };
 
   React.useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    rows = JSON.parse(localStorage.getItem("workoutHistory"));
-    props.setHistoryUpdated(!props.historyUpdated);
+    log(`historyUpdated effect triggered ${props.historyUpdated}`);
+    if (props.historyUpdated) {
+      rows = JSON.parse(localStorage.getItem("workoutHistory"));
+      props.setHistoryUpdated(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.historyUpdated]);
 

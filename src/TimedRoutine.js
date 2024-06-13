@@ -38,15 +38,19 @@ export default function Routine({
   function calculateRoutinePercentComplete() {
     if (!routineStarted && !routineFinished) {
       return 0;
+    } else if (routineFinished) {
+      return 100;
+    } else if (currentExercise.index < 1) {
+      return 0;
+    } else {
+      const totalExercises = currentRoutine.spec.exercises.length;
+      const completedExercises = currentExercise.index - 1;
+      const percentage = Math.round(
+        (completedExercises / totalExercises) * 100
+      );
+      log("Percent complete: " + percentage);
+      return percentage;
     }
-    const totalExercises =
-      currentRoutine.spec.exercises.length * currentRoutine.spec.sets;
-    const completedExercises =
-      currentRoutine.spec.exercises.length * currentExercise.currentSet -
-      (currentRoutine.spec.exercises.length - (currentExercise.index - 1));
-    const percentage = Math.round((completedExercises / totalExercises) * 100);
-    log("Percent complete: " + percentage);
-    return percentage;
   }
 
   function pauseRoutine() {
@@ -107,7 +111,13 @@ export default function Routine({
   }
 
   function startSet(newSet) {
-    log(`Starting set (${JSON.stringify(set, null, 2)})`);
+    log(
+      `Starting set (${JSON.stringify(
+        set,
+        null,
+        2
+      )}), currentExercise ${currentExercise}`
+    );
     setCurrentExercise((currentExercise) => ({
       ...currentExercise,
       currentSet: newSet,

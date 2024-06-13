@@ -13,9 +13,9 @@ export default function BasicSelect(props) {
   };
 
   return (
-    <Box sx={{ minWidth: 120, p: 1 }}>
+    <Box sx={{ minWidth: 120, p: 1, pr: 2 }}>
       <FormControl fullWidth>
-        <InputLabel id="select-label" sx={{ color: "white", pt: 1 }}>
+        <InputLabel id="select-label" sx={{ pt: 1 }}>
           Format
         </InputLabel>
         <Select
@@ -24,7 +24,6 @@ export default function BasicSelect(props) {
           value={format}
           label="format"
           onChange={handleChange}
-          sx={{ color: "white" }}
         >
           {["series", "circuit"].map((format, index) => {
             return (

@@ -1,10 +1,13 @@
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Modal from "./Modal";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { orange, red, green } from "@mui/material/colors";
 import { Card, Typography, Box, Button, Link } from "@mui/material";
+
+import ModeSelect from "./ModeSelect";
+import FormatSelect from "./FormatSelect";
 
 const RoutineSelector = (props) => {
   const {
@@ -14,9 +17,14 @@ const RoutineSelector = (props) => {
     routines,
     setCurrentRoutine,
     routineHistory,
+    selectedRoutine,
+    setSelectedRoutine,
+    modes,
+    currentMode,
+    setCurrentMode,
+    format,
+    setFormat,
   } = props;
-
-  const [selectedRoutine, setSelectedRoutine] = useState(null);
 
   const getUsageCount = (routineName) => {
     if (!routineHistory) {
@@ -101,6 +109,12 @@ const RoutineSelector = (props) => {
     return icons;
   };
 
+  useEffect(() => {
+    if (isOpen && sortedRoutines.length > 0 && selectedRoutine === null) {
+      onSelect(sortedRoutines[0]);
+    }
+  }, [isOpen]);
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div
@@ -140,7 +154,14 @@ const RoutineSelector = (props) => {
             </div>
           ))}
         </div>
-        <div style={{ flex: 3, padding: "10px", overflowY: "auto" }}>
+        <div
+          style={{
+            flex: 3,
+            padding: "10px",
+            overflowY: "auto",
+            paddingLeft: "50px",
+          }}
+        >
           {selectedRoutine ? (
             <>
               <Box>
@@ -247,18 +268,26 @@ const RoutineSelector = (props) => {
                     sx={{
                       display: "flex",
                       justifyContent: "right",
+                      alignItems: "center", // Added to vertically center the button
                       ml: 3,
                       mr: 3,
                       mb: 3,
                       mt: 3,
                     }}
                   >
+                    <ModeSelect
+                      modes={modes}
+                      currentMode={currentMode}
+                      setCurrentMode={setCurrentMode}
+                    />
+                    <FormatSelect format={format} setFormat={setFormat} />
                     <Button
                       variant="contained"
                       color="primary"
                       onClick={onConfirm}
+                      sx={{ height: "100%" }}
                     >
-                      Confirm
+                      Select
                     </Button>
                   </Box>
                 </Card>

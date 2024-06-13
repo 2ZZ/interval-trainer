@@ -6,7 +6,7 @@ export default function getExercises(format) {
       displayName: "Squat",
       name: "squat",
       video: "male-barbell-pause-box-squat-front_GEhqEjs.mp4",
-      defaults: { reps: 10 },
+      defaults: { reps: 10, weight: 25 },
     },
     {
       displayName: "Shoulder Press",

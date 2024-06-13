@@ -24,7 +24,7 @@ const Modal = ({ isOpen, onClose, children }) => {
         style={{
           position: "relative",
           backgroundColor: "white",
-          padding: "20px",
+          padding: "50px",
           borderRadius: "5px",
           width: "50%",
           height: "70%",
@@ -37,6 +37,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             top: 10,
             right: 10,
             borderRadius: "5px",
+            padding: "10px",
           }}
         >
           <CloseIcon />

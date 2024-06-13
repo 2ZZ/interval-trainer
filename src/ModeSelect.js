@@ -16,7 +16,7 @@ export default function BasicSelect(props) {
   return (
     <Box sx={{ minWidth: 120, p: 1 }}>
       <FormControl fullWidth>
-        <InputLabel id="select-label" sx={{ color: "white", pt: 1 }}>
+        <InputLabel id="select-label" sx={{ pt: 1 }}>
           Mode
         </InputLabel>
         <Select
@@ -25,7 +25,6 @@ export default function BasicSelect(props) {
           value={selectedMode}
           label="currentMode"
           onChange={handleChange}
-          sx={{ color: "white" }}
         >
           {props.modes.map((mode, index) => {
             return (
