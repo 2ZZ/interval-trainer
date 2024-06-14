@@ -6,14 +6,23 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 export default function BasicSelect(props) {
-  const { format, setFormat } = props;
+  const { format, setFormat, isMobile } = props;
 
   const handleChange = (event) => {
     setFormat(event.target.value);
   };
 
   return (
-    <Box sx={{ minWidth: 120, p: 1, pr: 2 }}>
+    <Box
+      sx={{
+        width: 120,
+        pl: isMobile ? 0 : 1,
+        pr: isMobile ? 0 : 1,
+        mb: 2,
+        mr: isMobile ? 0 : 1,
+        ml: isMobile ? 0 : 1,
+      }}
+    >
       <FormControl fullWidth>
         <InputLabel id="select-label" sx={{ pt: 1 }}>
           Format
@@ -24,6 +33,10 @@ export default function BasicSelect(props) {
           value={format}
           label="format"
           onChange={handleChange}
+          sx={{
+            height: "100%",
+            width: 120,
+          }}
         >
           {["series", "circuit"].map((format, index) => {
             return (

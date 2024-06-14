@@ -59,12 +59,12 @@ export default function ExerciseVideo(props) {
   }
 
   let HTML;
-  if (currentExercise.started && !routinePaused) {
-    return (
-      <div sx={{ position: "relative", textAlign: "center" }}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `
+
+  return (
+    <div sx={{ position: "relative", textAlign: "center" }}>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: `
           <video
             loop
             muted
@@ -75,29 +75,8 @@ export default function ExerciseVideo(props) {
             type="video/mp4"
           />
             `,
-          }}
-        />
-        <div className="video-overlay">
-          <h2>{overlayText}</h2>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <Box>
-        <Typography
-          component={"span"}
-          sx={{
-            p: 0,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            color: "secondary.main",
-          }}
-        >
-          <h2>Click START to begin</h2>
-        </Typography>
-      </Box>
-    );
-  }
+        }}
+      />
+    </div>
+  );
 }

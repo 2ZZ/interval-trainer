@@ -1,12 +1,13 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { Box, Typography } from "@mui/material";
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose, children, isMobile }) => {
   if (!isOpen) return null;
 
   return (
-    <div
+    <Box
       style={{
         position: "fixed",
         top: 0,
@@ -20,14 +21,15 @@ const Modal = ({ isOpen, onClose, children }) => {
         color: "#000",
       }}
     >
-      <div
+      <Box
         style={{
           position: "relative",
           backgroundColor: "white",
-          padding: "50px",
+          padding: isMobile ? "10px" : "40px",
+          paddingTop: isMobile ? "40px" : "40px",
           borderRadius: "5px",
-          width: "50%",
-          height: "70%",
+          width: isMobile ? "95%" : "50%",
+          height: isMobile ? "95%" : "70%",
         }}
       >
         <IconButton
@@ -42,9 +44,14 @@ const Modal = ({ isOpen, onClose, children }) => {
         >
           <CloseIcon />
         </IconButton>
+
+        <Typography variant="h4" sx={{ mb: 2, textAlign: "center" }}>
+          Select Workout
+        </Typography>
+
         {children}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

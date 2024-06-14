@@ -4,7 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { orange, red, green } from "@mui/material/colors";
-import { Card, Typography, Box, Button, Link } from "@mui/material";
+import { Card, Typography, Box, Button, Link, Divider } from "@mui/material";
 
 import ModeSelect from "./ModeSelect";
 import FormatSelect from "./FormatSelect";
@@ -24,6 +24,8 @@ const RoutineSelector = (props) => {
     setCurrentMode,
     format,
     setFormat,
+    onClickStart,
+    isMobile,
   } = props;
 
   const getUsageCount = (routineName) => {
@@ -93,6 +95,7 @@ const RoutineSelector = (props) => {
       spec: routines.find((r) => r.id === selectedRoutine.id),
     }));
     onClose();
+    onClickStart();
   };
 
   const renderIcons = (count) => {
@@ -116,26 +119,28 @@ const RoutineSelector = (props) => {
   }, [isOpen]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div
+    <Modal isOpen={isOpen} onClose={onClose} isMobile={isMobile}>
+      <Box
         style={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: isMobile ? "column" : "row",
           height: "100%",
           maxHeight: "80vh",
           overflow: "hidden",
         }}
       >
-        <div
+        <Box
           style={{
             flex: 1,
-            borderRight: "1px solid gray",
+            borderRight: isMobile ? "none" : "1px solid gray",
+            borderBottom: isMobile ? "1px solid gray" : "none",
             padding: "10px",
             overflowY: "auto",
+            height: "90%",
           }}
         >
           {sortedRoutines.map((routine) => (
-            <div
+            <Box
               key={routine.id}
               onClick={() => onSelect(routine)}
               style={{
@@ -151,15 +156,15 @@ const RoutineSelector = (props) => {
               <div style={{ display: "flex", alignItems: "center" }}>
                 {renderIcons(routine.usageCount)}
               </div>
-            </div>
+            </Box>
           ))}
-        </div>
-        <div
+        </Box>
+        <Box
           style={{
             flex: 3,
             padding: "10px",
             overflowY: "auto",
-            paddingLeft: "50px",
+            paddingLeft: isMobile ? "10px" : "50px",
           }}
         >
           {selectedRoutine ? (
@@ -174,7 +179,7 @@ const RoutineSelector = (props) => {
                   }}
                 >
                   <Typography
-                    variant="h4"
+                    variant="h5"
                     gutterBottom
                     sx={{
                       display: "flex",
@@ -267,28 +272,60 @@ const RoutineSelector = (props) => {
                   <Box
                     sx={{
                       display: "flex",
-                      justifyContent: "right",
-                      alignItems: "center", // Added to vertically center the button
+                      flexDirection: isMobile ? "column" : "row",
+                      justifyContent: isMobile ? "center" : "right",
+                      alignItems: "center",
                       ml: 3,
                       mr: 3,
                       mb: 3,
                       mt: 3,
                     }}
                   >
-                    <ModeSelect
-                      modes={modes}
-                      currentMode={currentMode}
-                      setCurrentMode={setCurrentMode}
-                    />
-                    <FormatSelect format={format} setFormat={setFormat} />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={onConfirm}
-                      sx={{ height: "100%" }}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 0,
+                        "@media (max-width: 600px)": {
+                          flexDirection: "column",
+                        },
+                      }}
                     >
-                      Select
-                    </Button>
+                      <Box sx={{ width: "100%", mb: 3 }}>
+                        <Divider />
+                      </Box>
+                      <ModeSelect
+                        modes={modes}
+                        currentMode={currentMode}
+                        setCurrentMode={setCurrentMode}
+                        isMobile={isMobile}
+                      />
+                      <FormatSelect
+                        format={format}
+                        setFormat={setFormat}
+                        isMobile={isMobile}
+                      />
+                      <Box sx={{ width: "100%", mb: 3 }}>
+                        <Divider />
+                      </Box>
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        onClick={onConfirm}
+                        sx={{
+                          height: "100%",
+                          width: 120,
+                          minHeight: 55,
+                          pl: isMobile ? 0 : 1,
+                          pr: isMobile ? 0 : 1,
+                          mb: 2,
+                          mr: isMobile ? 0 : 1,
+                          ml: isMobile ? 0 : 2,
+                        }}
+                      >
+                        START
+                      </Button>
+                    </Box>
                   </Box>
                 </Card>
               </Box>
@@ -308,8 +345,8 @@ const RoutineSelector = (props) => {
               Select a workout to see the details.
             </Box>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Modal>
   );
 };
