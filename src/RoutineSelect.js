@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import Modal from "./Modal";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -116,6 +116,7 @@ const RoutineSelector = (props) => {
     if (isOpen && sortedRoutines.length > 0 && selectedRoutine === null) {
       onSelect(sortedRoutines[0]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   return (
@@ -318,7 +319,7 @@ const RoutineSelector = (props) => {
                           minHeight: 55,
                           pl: isMobile ? 0 : 1,
                           pr: isMobile ? 0 : 1,
-                          mb: 2,
+                          mb: 0,
                           mr: isMobile ? 0 : 1,
                           ml: isMobile ? 0 : 2,
                         }}

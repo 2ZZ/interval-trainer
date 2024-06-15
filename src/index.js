@@ -137,7 +137,6 @@ function Index() {
               startIcon={<FitnessCenterIcon />}
               disableElevation={false}
               sx={{
-                display: "block",
                 mx: "auto",
                 boxShadow: 1,
                 ":hover": {
@@ -262,7 +261,7 @@ function Index() {
               )}
 
               {/* Center video grid */}
-              {currentExercise.started && !routinePaused && (
+              {!routinePaused && (
                 <Grid
                   item
                   xs={12}

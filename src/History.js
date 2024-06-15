@@ -110,6 +110,7 @@ export default function History(props) {
   React.useEffect(() => {
     log(`historyUpdated effect triggered ${props.historyUpdated}`);
     if (props.historyUpdated) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       rows = JSON.parse(localStorage.getItem("workoutHistory"));
       props.setHistoryUpdated(false);
     }

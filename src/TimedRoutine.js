@@ -30,7 +30,7 @@ export default function Routine({
 
   let intervalTime = 1000;
   let startDelay = countdownTime * 1000;
-  if (debug) {
+  if (debug && currentRoutine.spec.name === "Debug") {
     intervalTime = 100;
     startDelay = countdownTime * 10;
   }
@@ -167,8 +167,9 @@ export default function Routine({
   }
 
   function runExerciseInterval() {
-    let localWorkTime = currentRoutine.time.work;
-    let localRestTime = currentRoutine.time.rest;
+    log(`Current routine: ${JSON.stringify(currentRoutine)}`);
+    let localWorkTime = currentRoutine.spec.time.work;
+    let localRestTime = currentRoutine.spec.time.rest;
     let localCurrentExerciseIndex = currentExercise.index;
     interval.routineTimer = setInterval(() => {
       setTimers((timers) => ({
@@ -239,6 +240,7 @@ export default function Routine({
   React.useEffect(() => {
     log("routinePaused effect ran with value: " + routinePaused);
     if (routinePaused === undefined) {
+      return;
     } else if (routinePaused) {
       pauseRoutine();
     } else if (currentRoutine.phase !== "countdown") {

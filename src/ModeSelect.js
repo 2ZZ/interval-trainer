@@ -20,7 +20,7 @@ export default function BasicSelect(props) {
         width: 120,
         pl: isMobile ? 0 : 1,
         pr: isMobile ? 0 : 1,
-        mb: 2,
+        mb: 3,
         mr: isMobile ? 0 : 1,
         ml: isMobile ? 0 : 1,
       }}
