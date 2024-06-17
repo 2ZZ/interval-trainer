@@ -4,10 +4,12 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { orange, red, green } from "@mui/material/colors";
-import { Card, Typography, Box, Button, Link, Divider } from "@mui/material";
+import { Card, Box, Button, Divider } from "@mui/material";
 
 import ModeSelect from "./ModeSelect";
 import FormatSelect from "./FormatSelect";
+import RoutineDetails from "./RoutineDetails";
+import CreateRoutine from "./CreateRoutine";
 
 const RoutineSelector = (props) => {
   const {
@@ -26,6 +28,7 @@ const RoutineSelector = (props) => {
     setFormat,
     onClickStart,
     isMobile,
+    setRoutines,
   } = props;
 
   const getUsageCount = (routineName) => {
@@ -126,7 +129,7 @@ const RoutineSelector = (props) => {
           display: "flex",
           flexDirection: isMobile ? "column" : "row",
           height: "100%",
-          maxHeight: "80vh",
+          maxHeight: isMobile ? "90vh" : "80vh",
           overflow: "hidden",
         }}
       >
@@ -163,113 +166,35 @@ const RoutineSelector = (props) => {
         <Box
           style={{
             flex: 3,
-            padding: "10px",
+            padding: isMobile ? "0px" : "10px",
             overflowY: "auto",
-            paddingLeft: isMobile ? "10px" : "50px",
           }}
         >
           {selectedRoutine ? (
             <>
-              <Box>
+              <Box
+                sx={{
+                  margin: isMobile ? "0px" : "10px",
+                  padding: "10px",
+                  overflowY: "auto",
+                  height: "90%",
+                }}
+              >
                 <Card
                   raised
-                  style={{
+                  sx={{
                     margin: "10px 0",
                     padding: "10px",
                     overflowY: "auto",
                   }}
                 >
-                  <Typography
-                    variant="h5"
-                    gutterBottom
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      mt: 3,
-                    }}
-                  >
-                    {selectedRoutine.name}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      ml: 3,
-                    }}
-                  >
-                    Exercises
-                  </Typography>
-                  <Typography
-                    color="text.secondary"
-                    sx={{
-                      ml: 3,
-                    }}
-                    component="div"
-                  >
-                    <ul>
-                      {[...new Set(selectedRoutine.exercises)].map(
-                        (exercise, index) => {
-                          let video = exercise.video;
-                          if (!video?.startsWith("http")) {
-                            video = `/interval-trainer/static/videos/${video}`;
-                          }
-                          return (
-                            <li key={index}>
-                              <Link
-                                href={video}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                underline="hover"
-                              >
-                                {exercise.displayName}
-                              </Link>
-                            </li>
-                          );
-                        }
-                      )}
-                    </ul>
-                  </Typography>
-                  {selectedRoutine.timesCompleted > 0 && (
-                    <div>
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          ml: 3,
-                        }}
-                      >
-                        Stats
-                      </Typography>
-                      <Typography
-                        color="text.secondary"
-                        sx={{
-                          ml: 3,
-                        }}
-                        component="div"
-                      >
-                        <ul>
-                          <li>
-                            <Typography>
-                              Last completed: {selectedRoutine.lastDate}
-                            </Typography>
-                          </li>
-                          <li>
-                            <Typography>
-                              Times completed: {selectedRoutine.timesCompleted}
-                            </Typography>
-                          </li>
-                          <li>
-                            <Typography>
-                              Last time taken: {selectedRoutine.lastTimeTaken}
-                            </Typography>
-                          </li>
-                          <li>
-                            <Typography>
-                              Last mode used: {selectedRoutine.lastMode}
-                            </Typography>
-                          </li>
-                        </ul>
-                      </Typography>
-                    </div>
-                  )}
+                  {(selectedRoutine.id === 0 && (
+                    <CreateRoutine
+                      setRoutines={setRoutines}
+                      exercises={exercises}
+                      setSelectedRoutine={setSelectedRoutine}
+                    />
+                  )) || <RoutineDetails selectedRoutine={selectedRoutine} />}
                   <Box
                     sx={{
                       display: "flex",

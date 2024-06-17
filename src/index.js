@@ -127,7 +127,7 @@ function Index() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Routine Assistant
+              Workout Assistant
             </Typography>
             <Button
               variant="contained"
@@ -175,6 +175,7 @@ function Index() {
             setFormat={setFormat}
             onClickStart={() => setRoutineStarted(true)}
             isMobile={isMobile}
+            setRoutines={setRoutines}
           />
         </AppBar>
 
@@ -422,7 +423,13 @@ function Index() {
                 <Grid item xs={12}>
                   <Box sx={{ m: 2 }}>
                     <Paper
-                      sx={{ p: 2, display: "flex", flexDirection: "column" }}
+                      sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        maxHeight: "500px",
+                        overflow: "auto",
+                      }}
                     >
                       <History
                         historyUpdated={historyUpdated}

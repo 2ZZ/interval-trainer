@@ -190,17 +190,12 @@ export default function getRoutines(format) {
       ],
     },
     {
-      id: 13,
-      name: "Custom...",
+      id: 0,
+      name: "Custom",
       sets: 4,
       workTime: 40,
       restTime: 20,
-      exercises: [
-        "dumbbell-goblet-squat",
-        "dumbbell-row-bilateral",
-        "dumbbell-forward-lunge",
-        "dumbbell-overhead-press",
-      ],
+      exercises: [],
     },
     {
       id: 1,
