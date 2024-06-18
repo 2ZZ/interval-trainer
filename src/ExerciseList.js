@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
+import { createLogger } from "./utils";
 
 export default function ExerciseList(props) {
-  const { exercises, currentRoutine, currentExercise } = props;
+  const { exercises, currentRoutine, currentExercise, debug } = props;
   const boldItemRef = useRef(null);
+  const log = createLogger(debug);
 
   useEffect(() => {
     if (boldItemRef.current) {
@@ -14,6 +16,7 @@ export default function ExerciseList(props) {
   }, [currentExercise]);
 
   if (currentRoutine.phase === "ready") {
+    log(`currentRoutine: ${JSON.stringify(currentRoutine)}`);
     return (
       <div className="exercise">
         <ul>
@@ -39,7 +42,9 @@ export default function ExerciseList(props) {
                     fontWeight: isBold ? "bold" : "normal",
                   }}
                 >
-                  {exerciseDetails.displayName}
+                  {(exerciseDetails.displayName &&
+                    exerciseDetails.displayName) ||
+                    exerciseDetails.name}
                 </li>
               );
             })}
@@ -66,7 +71,8 @@ export default function ExerciseList(props) {
                   fontWeight: isBold ? "bold" : "normal",
                 }}
               >
-                {exerciseDetails.displayName}
+                {(exerciseDetails.displayName && exerciseDetails.displayName) ||
+                  exerciseDetails.name}
               </li>
             );
           })}

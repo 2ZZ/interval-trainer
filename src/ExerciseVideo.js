@@ -1,62 +1,72 @@
 import React from "react";
 import "./index.css";
 
-// Dangerous HTML due to video bug: https://github.com/facebook/react/issues/10389
+export default function ExerciseVideo({
+  currentMode,
+  currentRoutine,
+  currentExercise,
+  exercises,
+}) {
+  const getExerciseIndex = (exercise) => {
+    return exercise.index > 0 ? exercise.index - 1 : exercise.index;
+  };
 
-export default function ExerciseVideo(props) {
-  const { currentMode, currentRoutine, currentExercise, exercises } = props;
+  const getNextExerciseIndex = (index, length) => {
+    return index === length - 1 ? 0 : index + 1;
+  };
 
-  const currentExerciseIndex =
-    currentExercise.index > 0
-      ? currentExercise.index - 1
-      : currentExercise.index;
-  const nextExerciseIndex =
-    currentExerciseIndex === currentRoutine.spec.exercises.length - 1
-      ? 0
-      : currentExerciseIndex + 1;
+  const getMediaDetails = (exerciseName) => {
+    return exercises.find((e) => e.name === exerciseName);
+  };
+
+  const getMediaSource = (details, phase, mode) => {
+    let media = {
+      source: details?.video || details?.image,
+      type: details?.video ? "video" : "image",
+    };
+
+    if (media.source && !media.source.startsWith("http")) {
+      media.source = `/interval-trainer/static/${media.type}s/${media.source}`;
+    }
+
+    return media;
+  };
+
+  const currentExerciseIndex = getExerciseIndex(currentExercise);
+  const nextExerciseIndex = getNextExerciseIndex(
+    currentExerciseIndex,
+    currentRoutine.spec.exercises.length
+  );
 
   const currentExerciseName =
     currentRoutine.spec.exercises[currentExerciseIndex] ?? "";
   const nextExerciseName =
     currentRoutine.spec.exercises[nextExerciseIndex] ?? "";
 
-  const currentExerciseDetails = exercises.find(
-    (e) => e.name === currentExerciseName
-  );
+  const currentExerciseDetails = getMediaDetails(currentExerciseName);
+  const nextExerciseDetails = getMediaDetails(nextExerciseName);
 
-  const nextExerciseDetails = exercises.find(
-    (e) => e.name === nextExerciseName
-  );
-
-  let video = "";
-  if (currentRoutine.phase === "rest") {
-    video = nextExerciseDetails?.video ?? "nextExerciseVideonotfound";
-  } else if (currentRoutine.phase === "work") {
-    video = currentExerciseDetails?.video ?? "currentExerciseVideonotfoundWork";
-  } else if (currentMode.name === "click") {
-    video =
-      currentExerciseDetails?.video ?? "currentExerciseVideonotfoundClick";
-  }
-
-  if (!video.startsWith("http")) {
-    video = `/interval-trainer/static/videos/${video}`;
-  }
+  const media =
+    currentRoutine.phase === "rest"
+      ? getMediaSource(
+          nextExerciseDetails,
+          currentRoutine.phase,
+          currentMode.name
+        )
+      : getMediaSource(
+          currentExerciseDetails,
+          currentRoutine.phase,
+          currentMode.name
+        );
 
   return (
     <div sx={{ position: "relative", textAlign: "center" }}>
       <div
         dangerouslySetInnerHTML={{
-          __html: `
-          <video
-            loop
-            muted
-            autoplay
-            playsinline
-            width="100%"
-            src="${video}"
-            type="video/mp4"
-          />
-            `,
+          __html:
+            media.type === "video"
+              ? `<video loop muted autoplay playsinline width="100%" src="${media.source}" type="video/mp4" />`
+              : `<img src="${media.source}" alt="${currentExerciseName}" width="100%" />`,
         }}
       />
     </div>

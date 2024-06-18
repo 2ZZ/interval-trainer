@@ -100,97 +100,82 @@ function Index() {
       ? true
       : false;
 
-  // Switch format
-  useEffect(() => {
-    const updatedRoutines = getRoutines(format);
-    const routineIndex = routines.findIndex(
-      (routine) => routine === currentRoutine.spec
-    );
-    setRoutines(updatedRoutines);
-    setCurrentRoutine((prevRoutine) => ({
-      ...prevRoutine,
-      spec: updatedRoutines[routineIndex],
-    }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [format]);
-
   return (
     <ThemeProvider theme={mdTheme}>
+      <AppBar position="absolute" open={true}>
+        <Toolbar>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+          >
+            Workout Assistant
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => setShowRoutineSelectModal(true)}
+            startIcon={<FitnessCenterIcon />}
+            disableElevation={false}
+            sx={{
+              mx: "auto",
+              boxShadow: 1,
+              ":hover": {
+                backgroundColor: "secondary.dark",
+                boxShadow: 6,
+              },
+              transition: "transform 0.2s",
+              ":active": {
+                transform: "scale(0.95)",
+              },
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Reselect
+          </Button>
+        </Toolbar>
+
+        <RoutineSelect
+          debug={debug}
+          exercises={exercises}
+          routines={routines}
+          currentRoutine={currentRoutine}
+          setCurrentRoutine={setCurrentRoutine}
+          isOpen={showRoutineSelectModal}
+          onClose={() => setShowRoutineSelectModal(false)}
+          routineHistory={routineHistory}
+          selectedRoutine={selectedRoutine}
+          setSelectedRoutine={setSelectedRoutine}
+          modes={modes}
+          currentMode={currentMode}
+          setCurrentMode={setCurrentMode}
+          format={format}
+          setFormat={setFormat}
+          onClickStart={() => setRoutineStarted(true)}
+          isMobile={isMobile}
+          setRoutines={setRoutines}
+        />
+      </AppBar>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={true}>
-          <Toolbar>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              Workout Assistant
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              onClick={() => setShowRoutineSelectModal(true)}
-              startIcon={<FitnessCenterIcon />}
-              disableElevation={false}
-              sx={{
-                mx: "auto",
-                boxShadow: 1,
-                ":hover": {
-                  backgroundColor: "secondary.dark",
-                  boxShadow: 6,
-                },
-                transition: "transform 0.2s",
-                ":active": {
-                  transform: "scale(0.95)",
-                },
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              Reselect
-            </Button>
-          </Toolbar>
-
-          <RoutineSelect
-            debug={debug}
-            exercises={exercises}
-            routines={routines}
-            currentRoutine={currentRoutine}
-            setCurrentRoutine={setCurrentRoutine}
-            isOpen={showRoutineSelectModal}
-            onClose={() => setShowRoutineSelectModal(false)}
-            routineHistory={routineHistory}
-            selectedRoutine={selectedRoutine}
-            setSelectedRoutine={setSelectedRoutine}
-            modes={modes}
-            currentMode={currentMode}
-            setCurrentMode={setCurrentMode}
-            format={format}
-            setFormat={setFormat}
-            onClickStart={() => setRoutineStarted(true)}
-            isMobile={isMobile}
-            setRoutines={setRoutines}
-          />
-        </AppBar>
-
         <Box
           component="main"
           sx={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
             backgroundColor: (theme) =>
               theme.palette.mode === "light"
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
             flexGrow: 1,
-            height: "100vh",
+            marginTop: "50px",
+            height: "95vh",
             overflow: "auto",
           }}
         >
@@ -254,6 +239,7 @@ function Index() {
                           exercises={exercises}
                           currentExercise={currentExercise}
                           currentRoutine={currentRoutine}
+                          debug={debug}
                         />
                       </Box>
                     </Paper>

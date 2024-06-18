@@ -11,6 +11,8 @@ import FormatSelect from "./FormatSelect";
 import RoutineDetails from "./RoutineDetails";
 import CreateRoutine from "./CreateRoutine";
 
+import { createLogger } from "./utils";
+
 const RoutineSelector = (props) => {
   const {
     isOpen,
@@ -29,7 +31,10 @@ const RoutineSelector = (props) => {
     onClickStart,
     isMobile,
     setRoutines,
+    debug,
   } = props;
+
+  const log = createLogger(debug);
 
   const getUsageCount = (routineName) => {
     if (!routineHistory) {
@@ -64,7 +69,6 @@ const RoutineSelector = (props) => {
       lastMode: lastEntry.Mode || "N/A",
     };
   };
-
   const sortedRoutines = useMemo(() => {
     const exerciseMap = new Map(exercises.map((ex) => [ex.name, ex]));
 
@@ -80,7 +84,11 @@ const RoutineSelector = (props) => {
           };
         }),
       }))
-      .sort((a, b) => b.usageCount - a.usageCount);
+      .sort((a, b) => {
+        if (a.id === 0) return -1;
+        if (b.id === 0) return 1;
+        return b.usageCount - a.usageCount;
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routines, exercises, routineHistory]);
 
@@ -92,10 +100,28 @@ const RoutineSelector = (props) => {
     });
   };
 
+  function formatExercises(exercises, sets, format) {
+    if (format === "circuit") {
+      return Array(sets)
+        .fill(null)
+        .flatMap(() => exercises);
+    } else if (format === "series") {
+      return exercises.flatMap((exercise) => Array(sets).fill(exercise));
+    }
+    return exercises;
+  }
+
   const onConfirm = () => {
+    let routine = routines.find((r) => r.id === selectedRoutine.id);
+    routine = {
+      ...routine,
+      exercises: formatExercises(routine.exercises, routine.sets, format),
+    };
+    log(`Setting routine to: ${JSON.stringify(routine)}`);
+
     setCurrentRoutine((currentRoutine) => ({
       ...currentRoutine,
-      spec: routines.find((r) => r.id === selectedRoutine.id),
+      spec: routine,
     }));
     onClose();
     onClickStart();
@@ -190,9 +216,11 @@ const RoutineSelector = (props) => {
                 >
                   {(selectedRoutine.id === 0 && (
                     <CreateRoutine
+                      routines={routines}
                       setRoutines={setRoutines}
                       exercises={exercises}
                       setSelectedRoutine={setSelectedRoutine}
+                      debug={debug}
                     />
                   )) || <RoutineDetails selectedRoutine={selectedRoutine} />}
                   <Box
@@ -221,6 +249,7 @@ const RoutineSelector = (props) => {
                         <Divider />
                       </Box>
                       <ModeSelect
+                        debug={debug}
                         modes={modes}
                         currentMode={currentMode}
                         setCurrentMode={setCurrentMode}

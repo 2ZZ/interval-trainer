@@ -5,11 +5,17 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+import { createLogger } from "./utils";
+
 export default function BasicSelect(props) {
-  const { isMobile } = props;
+  const { debug, isMobile } = props;
+
   const [selectedMode, setSelectedMode] = React.useState(0);
 
+  const log = createLogger(debug);
+
   const handleChange = (event) => {
+    log(`Setting mode to ${event.target.value}`);
     setSelectedMode(event.target.value);
     props.setCurrentMode(props.modes[event.target.value]);
   };

@@ -73,7 +73,6 @@ export default function Routine({
 
   function startRoutine() {
     log("Starting routine");
-    resetRoutine();
     setRoutineStarted(true);
     setCurrentRoutine((currentRoutine) => ({
       ...currentRoutine,

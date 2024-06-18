@@ -1,7 +1,7 @@
 // Video source: https://musclewiki.com/
 
 export default function getExercises(format) {
-  return [
+  const exercises = [
     {
       displayName: "Squat",
       name: "squat",
@@ -503,5 +503,20 @@ export default function getExercises(format) {
         "https://media.musclewiki.com/media/uploads/videos/branded/male-Bodyweight-bicycle-crunch-front.mp4",
       defaults: { reps: 20 },
     },
+    {
+      displayName: "One Leg Dumbbell Squat",
+      name: "one-leg-dumbbell-squat",
+      image: "one-leg-dumbbell-squat.jpg",
+      defaults: { reps: 10, weight: 20 },
+    },
   ];
+  return exercises.sort((a, b) => {
+    if (a.displayName < b.displayName) {
+      return -1;
+    }
+    if (a.displayName > b.displayName) {
+      return 1;
+    }
+    return 0;
+  });
 }

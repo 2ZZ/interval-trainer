@@ -15,8 +15,6 @@ export default function ClickRoutine({
   setCurrentRoutine,
   currentExercise,
   setCurrentExercise,
-  countdownTime,
-  setRoutineStartTime,
   set,
   setSet,
   setTimers,
@@ -59,7 +57,6 @@ export default function ClickRoutine({
     }));
     setTimers({ total: 0, paused: 0, work: 0, rest: 0 });
     setCurrentExercise(1);
-    setRoutineStartTime("");
     setCurrentExercise((currentExercise) => ({
       ...currentExercise,
       index: 1,

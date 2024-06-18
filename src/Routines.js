@@ -3,6 +3,16 @@
 export default function getRoutines(format) {
   const routines = [
     {
+      id: 0,
+      name: "Custom",
+      sets: 4,
+      time: {
+        work: 40,
+        rest: 20,
+      },
+      exercises: [],
+    },
+    {
       id: 2,
       name: "Balanced 1",
       sets: 4,
@@ -190,12 +200,21 @@ export default function getRoutines(format) {
       ],
     },
     {
-      id: 0,
-      name: "Custom",
+      id: 13,
+      name: "#5",
       sets: 4,
-      workTime: 40,
-      restTime: 20,
-      exercises: [],
+      time: {
+        work: 40,
+        rest: 20,
+      },
+      exercises: [
+        "wrist-curl",
+        "diamond-pushups",
+        "dumbbell-crunch",
+        "calf-raises",
+        "one-leg-dumbbell-squat",
+        "dumbbell-lateral-raise",
+      ],
     },
     {
       id: 1,
@@ -209,25 +228,5 @@ export default function getRoutines(format) {
     },
   ];
 
-  return routines.map((workout) => {
-    const { sets, exercises } = workout;
-    let formattedExercises;
-
-    if (format === "circuit") {
-      formattedExercises = Array(sets)
-        .fill(null)
-        .flatMap(() => exercises);
-    } else if (format === "series") {
-      formattedExercises = exercises.flatMap((exercise) =>
-        Array(sets).fill(exercise)
-      );
-    } else {
-      formattedExercises = exercises;
-    }
-
-    return {
-      ...workout,
-      exercises: formattedExercises,
-    };
-  });
+  return routines;
 }

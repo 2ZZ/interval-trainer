@@ -1,101 +1,141 @@
 import React, { useEffect, useState } from "react";
-import { Button, MenuItem, Select, TextField, Typography } from "@mui/material";
+import {
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  Grid,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 
+import { createLogger } from "./utils";
 function CreateRoutine(props) {
-  const { setRoutines, exercises } = props;
+  const { setRoutines, exercises, debug } = props;
   const [numExercises, setNumExercises] = useState(6);
   const [routineExercises, setRoutineExercises] = useState([]);
+  const [sets, setSets] = useState(4); // Default value for sets
+  const [workTime, setWorkTime] = useState(40); // Default work time
+  const [restTime, setRestTime] = useState(20); // Default rest time
+  const log = createLogger(debug);
 
   useEffect(() => {
-    setRoutineExercises(
-      Array(numExercises)
-        .fill(null)
-        .map((_, index) => {
-          return { exercise: "", reps: 10, weight: 25 };
-        })
-    );
+    setRoutineExercises((prevExercises) => {
+      const newExercises = [...prevExercises];
+      if (numExercises > prevExercises.length) {
+        for (let i = prevExercises.length; i < numExercises; i++) {
+          newExercises.push({ exercise: "", reps: 10, weight: 25 });
+        }
+      } else {
+        newExercises.length = numExercises;
+      }
+      return newExercises;
+    });
   }, [numExercises]);
 
   const handleNumExercisesChange = (event) => {
-    const newNumExercises = parseInt(event.target.value, 10);
-    setNumExercises(newNumExercises);
-    const updatedRoutine = new Array(newNumExercises)
-      .fill(null)
-      .map((_, index) => {
-        return (
-          routineExercises[index] || { exercise: "", reps: 10, weight: 25 }
-        );
-      });
-    setRoutineExercises(updatedRoutine);
+    setNumExercises(parseInt(event.target.value, 10));
   };
 
-  const handleExerciseChange = (index, value) => {
-    const newRoutine = [...routineExercises];
-    const exerciseDetails = exercises.find((ex) => ex.name === value);
-    newRoutine[index] = {
-      ...newRoutine[index],
-      exercise: value,
-      reps: exerciseDetails.defaults.reps,
-      weight: exerciseDetails.defaults.weight,
+  useEffect(() => {
+    const saveRoutine = () => {
+      setRoutines((routines) => {
+        const updatedRoutines = routines.map((routine) => {
+          if (routine.id === 0) {
+            return {
+              ...routine,
+              sets: sets,
+              time: { work: workTime, rest: restTime },
+              exercises: routineExercises.map((e) => e.exercise),
+            };
+          }
+          return routine;
+        });
+        log(`updatedRoutines: ${JSON.stringify(updatedRoutines)}`);
+        return updatedRoutines;
+      });
     };
-    setRoutineExercises(newRoutine);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Routine created:", routineExercises);
-
-    setRoutines((routines) => {
-      const updatedRoutines = routines.map((routine) => {
-        if (routine.id === 0) {
-          // Custom
-          return {
-            ...routine,
-            exercises: routineExercises,
-          };
-        }
-        return routine;
-      });
-      return updatedRoutines;
-    });
-  };
+    saveRoutine();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sets, workTime, restTime, routineExercises, setRoutines]);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <Typography variant="h6" sx={{ mb: 2 }}>
         Create Your Routine
       </Typography>
-      <TextField
-        type="number"
-        label="Number of Exercises"
-        value={numExercises}
-        onChange={handleNumExercisesChange}
-        sx={{ mb: 2, width: "100%" }}
-        inputProps={{ min: 1 }}
-      />
-      {routineExercises.map((item, index) => (
-        <div key={index} style={{ marginBottom: 16 }}>
-          <Select
-            value={item.exercise || ""}
-            onChange={(e) => handleExerciseChange(index, e.target.value)}
-            displayEmpty
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            type="number"
+            label="Number of Sets"
+            value={sets}
+            onChange={(e) => setSets(parseInt(e.target.value, 10))}
             fullWidth
-            sx={{ mb: 1 }}
-          >
-            <MenuItem value="">
-              <em>Select an Exercise</em>
-            </MenuItem>
-            {exercises.map((ex) => (
-              <MenuItem key={ex.name} value={ex.name}>
-                {ex.displayName}
-              </MenuItem>
-            ))}
-          </Select>
-        </div>
-      ))}
-      <Button type="submit" variant="contained" color="primary">
-        Save Routine
-      </Button>
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            type="number"
+            label="Work Time (seconds)"
+            value={workTime}
+            onChange={(e) => setWorkTime(parseInt(e.target.value, 10))}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            type="number"
+            label="Rest Time (seconds)"
+            value={restTime}
+            onChange={(e) => setRestTime(parseInt(e.target.value, 10))}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            type="number"
+            label="Number of Exercises"
+            value={numExercises}
+            onChange={handleNumExercisesChange}
+            fullWidth
+            InputProps={{ inputProps: { min: 1 } }}
+          />
+        </Grid>
+        {routineExercises.map((item, index) => (
+          <Grid item xs={12} key={index}>
+            <FormControl fullWidth>
+              <InputLabel id={`exercise-select-label-${index}`}>
+                Select an Exercise
+              </InputLabel>
+              <Select
+                labelId={`exercise-select-label-${index}`}
+                value={item.exercise || ""}
+                onChange={(e) =>
+                  setRoutineExercises((exs) => {
+                    const newExercises = [...exs];
+                    newExercises[index] = {
+                      ...newExercises[index],
+                      exercise: e.target.value,
+                    };
+                    return newExercises;
+                  })
+                }
+                displayEmpty
+                fullWidth
+                label="Select an Exercise"
+              >
+                <MenuItem value=""></MenuItem>
+                {exercises.map((ex) => (
+                  <MenuItem key={ex.name} value={ex.name}>
+                    {ex.displayName}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+        ))}
+      </Grid>
     </form>
   );
 }

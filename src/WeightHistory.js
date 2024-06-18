@@ -57,7 +57,7 @@ export default function WeightHistory(props) {
         currentRoutine.spec.name,
         currentExercise.index
       ) ||
-        exerciseDetails.defaults?.weight ||
+        exerciseDetails?.defaults?.weight ||
         0
     );
     log("selectedWeight is: " + selectedWeight);
