@@ -21,7 +21,6 @@ export default function Stats(props) {
     setHistoryUpdated,
     timers,
     routineHistory,
-    exerciseCounts,
     setExerciseCounts,
   } = props;
 
@@ -46,6 +45,7 @@ export default function Stats(props) {
     const counts = countExercisesAcrossHistory(routineHistory);
     log("here");
     setExerciseCounts(counts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(routineHistory)]);
 
   function setDate() {

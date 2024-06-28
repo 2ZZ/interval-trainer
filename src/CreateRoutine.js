@@ -7,7 +7,6 @@ import {
   Grid,
   FormControl,
   InputLabel,
-  ListItemText,
 } from "@mui/material";
 
 import { createLogger } from "./utils";

@@ -300,7 +300,7 @@ export default function getRoutines(format) {
         "dumbbell-heels-up-goblet-squat",
         "dumbbell-laying-reverse-fly",
       ],
-    }
+    },
     {
       id: 1,
       name: "Debug",
