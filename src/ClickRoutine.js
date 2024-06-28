@@ -155,6 +155,8 @@ export default function ClickRoutine({
           ...currentRoutine.history,
           {
             exerciseIndex: currentExercise.index,
+            exerciseName:
+              currentRoutine.spec.exercises[currentExercise.index - 1],
             set: currentExercise.currentSet,
             weight: selectedWeight,
             reps: selectedReps,

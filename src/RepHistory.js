@@ -58,7 +58,7 @@ function RepHistory(props) {
 
     setSelectedReps(
       getMostRecentReps(currentRoutine.spec.name, currentExercise.index) ||
-        exerciseDetails.defaults?.reps ||
+        exerciseDetails?.defaults?.reps ||
         0
     );
     log("selectedReps is: " + selectedReps);

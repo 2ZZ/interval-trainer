@@ -20,6 +20,9 @@ export default function Stats(props) {
     historyUpdated,
     setHistoryUpdated,
     timers,
+    routineHistory,
+    exerciseCounts,
+    setExerciseCounts,
   } = props;
 
   const log = createLogger(debug);
@@ -34,10 +37,16 @@ export default function Stats(props) {
   React.useEffect(() => {
     // if (routineFinished && currentRoutine.percentComplete > 25) {
     if (routineFinished) {
-      saveStats();
+      saveStatsToHistory();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routineFinished]);
+
+  React.useEffect(() => {
+    const counts = countExercisesAcrossHistory(routineHistory);
+    log("here");
+    setExerciseCounts(counts);
+  }, [JSON.stringify(routineHistory)]);
 
   function setDate() {
     let newDate = new Date();
@@ -47,6 +56,26 @@ export default function Stats(props) {
     let hours = newDate.getHours();
     let minutes = (newDate.getMinutes() < 10 ? "0" : "") + newDate.getMinutes();
     return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
+
+  function countExercisesAcrossHistory(routineHistory) {
+    const exerciseCounts = {};
+
+    routineHistory.forEach((routine) => {
+      if (routine.History) {
+        routine.History.forEach((entry) => {
+          const exerciseName = entry.exerciseName || entry.exercise;
+          if (exerciseCounts[exerciseName]) {
+            exerciseCounts[exerciseName]++;
+          } else {
+            exerciseCounts[exerciseName] = 1;
+          }
+        });
+      }
+    });
+
+    log(exerciseCounts);
+    return exerciseCounts;
   }
 
   function generateStatsObj() {
@@ -85,7 +114,7 @@ export default function Stats(props) {
     document.body.removeChild(element);
   }
 
-  function saveStats() {
+  function saveStatsToHistory() {
     const statsStr = localStorage.getItem("workoutHistory") || "[]";
     let stats = JSON.parse(statsStr);
     log("Saving stats: " + JSON.stringify(stats));
@@ -130,7 +159,7 @@ export default function Stats(props) {
         <IconButton onClick={() => downloadStats()}>
           <SaveAltIcon color="action" />
         </IconButton>
-        <IconButton onClick={() => saveStats()}>
+        <IconButton onClick={() => saveStatsToHistory()}>
           <SaveIcon color="action" />
         </IconButton>
       </div>

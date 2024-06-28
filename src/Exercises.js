@@ -509,6 +509,18 @@ export default function getExercises(format) {
       image: "one-leg-dumbbell-squat.jpg",
       defaults: { reps: 10, weight: 20 },
     },
+    {
+      displayName: "One Leg Dumbbell Squat (Left)",
+      name: "one-leg-dumbbell-squat-left",
+      image: "one-leg-dumbbell-squat.jpg",
+      defaults: { reps: 10, weight: 20 },
+    },
+    {
+      displayName: "One Leg Dumbbell Squat (Right)",
+      name: "one-leg-dumbbell-squat-right",
+      image: "one-leg-dumbbell-squat.jpg",
+      defaults: { reps: 10, weight: 20 },
+    },
   ];
   return exercises.sort((a, b) => {
     if (a.displayName < b.displayName) {

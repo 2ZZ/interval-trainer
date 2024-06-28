@@ -32,9 +32,12 @@ const RoutineSelector = (props) => {
     isMobile,
     setRoutines,
     debug,
+    exerciseCounts,
   } = props;
 
   const log = createLogger(debug);
+
+  log(routineHistory);
 
   const getUsageCount = (routineName) => {
     if (!routineHistory) {
@@ -54,21 +57,16 @@ const RoutineSelector = (props) => {
     }
 
     const history = routineHistory.filter((r) => r.Routine === routineName);
-    const lastEntry = history.reduce(
-      (prev, current) =>
-        new Date(prev.Date) > new Date(current.Date) ? prev : current,
-      { Date: "1900-01-01" }
-    );
+    const lastEntry = history[0] || {};
 
     return {
-      lastDate: lastEntry.Date
-        ? new Date(lastEntry.Date).toLocaleDateString()
-        : "Never",
+      lastDate: lastEntry.Date ? lastEntry.Date : "Never",
       timesCompleted: history.length,
       lastTimeTaken: lastEntry["Total time"] || "N/A",
       lastMode: lastEntry.Mode || "N/A",
     };
   };
+
   const sortedRoutines = useMemo(() => {
     const exerciseMap = new Map(exercises.map((ex) => [ex.name, ex]));
 
@@ -184,7 +182,7 @@ const RoutineSelector = (props) => {
             >
               {routine.name}
               <div style={{ display: "flex", alignItems: "center" }}>
-                {renderIcons(routine.usageCount)}
+                {renderIcons(routine.usageCount)}({routine.usageCount})
               </div>
             </Box>
           ))}
@@ -220,7 +218,9 @@ const RoutineSelector = (props) => {
                       setRoutines={setRoutines}
                       exercises={exercises}
                       setSelectedRoutine={setSelectedRoutine}
+                      currentMode={currentMode}
                       debug={debug}
+                      exerciseCounts={exerciseCounts}
                     />
                   )) || <RoutineDetails selectedRoutine={selectedRoutine} />}
                   <Box

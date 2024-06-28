@@ -21,12 +21,12 @@ export default function getRoutines(format) {
         rest: 20,
       },
       exercises: [
-        "squat",
+        "one-leg-dumbbell-squat-left",
+        "one-leg-dumbbell-squat-right",
         "shoulder-press",
         "floor-fly",
         "dumbbell-situp",
         "forward-lunges",
-        "sumo-squat",
       ],
     },
     {
@@ -55,9 +55,9 @@ export default function getRoutines(format) {
         rest: 20,
       },
       exercises: [
-        "squat-press",
+        "overhead-press",
         "hammer-curl",
-        "split-squat",
+        "one-leg-dumbbell-squat",
         "left-hand-row",
         "right-hand-row",
         "dumbbell-stiff-legged-deadlift",
@@ -76,7 +76,7 @@ export default function getRoutines(format) {
         "lateral-raise",
         "dumbbell-rear-delt-fly",
         "curls",
-        "floor-to-ceiling-press",
+        "overhead-press",
         "alternative-lunges",
       ],
     },
@@ -143,7 +143,7 @@ export default function getRoutines(format) {
         "shoulder-press",
         "curls",
         "hammer-curl",
-        "floor-to-ceiling-press",
+        "overhead-press",
         "lateral-raise",
         "dumbbell-rear-delt-fly",
       ],
@@ -224,7 +224,7 @@ export default function getRoutines(format) {
         work: 5,
         rest: 5,
       },
-      exercises: ["squat-press", "press-up-row"],
+      exercises: ["overhead-press", "press-up-row"],
     },
   ];
 

@@ -56,6 +56,8 @@ function Index() {
   const [selectedWeight, setSelectedWeight] = useState(0);
   const [selectedReps, setSelectedReps] = useState(10);
 
+  const [exerciseCounts, setExerciseCounts] = useState({});
+
   const [routineReset, setRoutineReset] = useState(false);
   const [routineRewind, setRoutineRewind] = useState(false);
   const [historyUpdated, setHistoryUpdated] = useState(false);
@@ -96,7 +98,8 @@ function Index() {
   const countdownTime = 10;
   const debug =
     currentRoutine.spec.name === "Debug" ||
-    window.location.hostname === "127.0.0.1"
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "localhost"
       ? true
       : false;
 
@@ -160,6 +163,7 @@ function Index() {
           onClickStart={() => setRoutineStarted(true)}
           isMobile={isMobile}
           setRoutines={setRoutines}
+          exerciseCounts={exerciseCounts}
         />
       </AppBar>
       <Box sx={{ display: "flex" }}>
@@ -215,6 +219,8 @@ function Index() {
                         debug={debug}
                         timers={timers}
                         setTimers={setTimers}
+                        exerciseCounts={exerciseCounts}
+                        setExerciseCounts={setExerciseCounts}
                       />
                     </Paper>
                   </Box>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import {
   MenuItem,
   Select,
@@ -7,17 +7,26 @@ import {
   Grid,
   FormControl,
   InputLabel,
+  ListItemText,
 } from "@mui/material";
 
 import { createLogger } from "./utils";
 function CreateRoutine(props) {
-  const { setRoutines, exercises, debug } = props;
+  const { setRoutines, exercises, currentMode, debug, exerciseCounts } = props;
   const [numExercises, setNumExercises] = useState(6);
   const [routineExercises, setRoutineExercises] = useState([]);
-  const [sets, setSets] = useState(4); // Default value for sets
-  const [workTime, setWorkTime] = useState(40); // Default work time
-  const [restTime, setRestTime] = useState(20); // Default rest time
+  const [sets, setSets] = useState(4);
+  const [workTime, setWorkTime] = useState(40);
+  const [restTime, setRestTime] = useState(20);
   const log = createLogger(debug);
+
+  const sortedExercises = useMemo(() => {
+    return [...exercises].sort((a, b) => {
+      const countA = exerciseCounts[a.name] || 0;
+      const countB = exerciseCounts[b.name] || 0;
+      return countB - countA;
+    });
+  }, [exercises, exerciseCounts]);
 
   useEffect(() => {
     setRoutineExercises((prevExercises) => {
@@ -81,6 +90,7 @@ function CreateRoutine(props) {
             value={workTime}
             onChange={(e) => setWorkTime(parseInt(e.target.value, 10))}
             fullWidth
+            disabled={currentMode.name !== "timer"}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
@@ -90,8 +100,10 @@ function CreateRoutine(props) {
             value={restTime}
             onChange={(e) => setRestTime(parseInt(e.target.value, 10))}
             fullWidth
+            disabled={currentMode.name !== "timer"}
           />
         </Grid>
+
         <Grid item xs={12}>
           <TextField
             type="number"
@@ -126,9 +138,21 @@ function CreateRoutine(props) {
                 label="Select an Exercise"
               >
                 <MenuItem value=""></MenuItem>
-                {exercises.map((ex) => (
+                {sortedExercises.map((ex) => (
                   <MenuItem key={ex.name} value={ex.name}>
-                    {ex.displayName}
+                    <Typography variant="body1" component="span">
+                      {ex.displayName}
+                      {exerciseCounts[ex.name] > 0 && (
+                        <Typography
+                          variant="body2"
+                          component="span"
+                          color="text.secondary"
+                          sx={{ ml: 1, fontSize: "0.8em" }}
+                        >
+                          ({exerciseCounts[ex.name]})
+                        </Typography>
+                      )}
+                    </Typography>
                   </MenuItem>
                 ))}
               </Select>
