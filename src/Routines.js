@@ -217,6 +217,91 @@ export default function getRoutines(format) {
       ],
     },
     {
+      id: 14,
+      name: "Full Body Blast",
+      sets: 3,
+      time: {
+        work: 45,
+        rest: 15,
+      },
+      exercises: [
+        "dumbbell-goblet-squat",
+        "dumbbell-bench-press",
+        "dumbbell-row-bilateral",
+        "dumbbell-overhead-press",
+        "dumbbell-romanian-deadlift",
+        "bicycle-crunch",
+      ],
+    },
+    {
+      id: 15,
+      name: "Upper Body Focus",
+      sets: 4,
+      time: {
+        work: 40,
+        rest: 20,
+      },
+      exercises: [
+        "dumbbell-bench-press",
+        "dumbbell-row-bilateral",
+        "dumbbell-overhead-press",
+        "dumbbell-lateral-raise",
+        "dumbbell-skullcrusher",
+        "dumbbell-twisting-curl",
+      ],
+    },
+    {
+      id: 16,
+      name: "Lower Body Strength",
+      sets: 3,
+      time: {
+        work: 50,
+        rest: 25,
+      },
+      exercises: [
+        "dumbbell-bulgarian-split-squat",
+        "dumbbell-romanian-deadlift",
+        "dumbbell-goblet-squat",
+        "dumbbell-calf-raise",
+        "dumbbell-forward-lunge",
+        "dumbbell-side-bend",
+      ],
+    },
+    {
+      id: 17,
+      name: "Core and Stability",
+      sets: 3,
+      time: {
+        work: 30,
+        rest: 15,
+      },
+      exercises: [
+        "dumbbell-russian-twist",
+        "dumbbell-wood-chopper",
+        "dumbbell-elbow-side-plank",
+        "bicycle-crunch",
+        "dumbbell-crunch",
+        "dumbbell-cross-body-romanian-deadlift",
+      ],
+    },
+    {
+      id: 18,
+      name: "Functional Fitness",
+      sets: 3,
+      time: {
+        work: 40,
+        rest: 20,
+      },
+      exercises: [
+        "burpee-deadlift",
+        "dumbbell-neutral-overhead-press",
+        "dumbbell-reverse-lunge",
+        "dumbbell-row-bilateral",
+        "dumbbell-heels-up-goblet-squat",
+        "dumbbell-laying-reverse-fly",
+      ],
+    }
+    {
       id: 1,
       name: "Debug",
       sets: 2,
