@@ -56,6 +56,8 @@ function Index() {
   const [selectedWeight, setSelectedWeight] = useState(0);
   const [selectedReps, setSelectedReps] = useState(10);
 
+  const [multipliedWeight, setMultipliedWeight] = useState(0);
+  const [weightMultiplier, setWeightMultiplier] = useState(2);
   const [exerciseCounts, setExerciseCounts] = useState({});
 
   const [routineReset, setRoutineReset] = useState(false);
@@ -144,27 +146,29 @@ function Index() {
           </Button>
         </Toolbar>
 
-        <RoutineSelect
-          debug={debug}
-          exercises={exercises}
-          routines={routines}
-          currentRoutine={currentRoutine}
-          setCurrentRoutine={setCurrentRoutine}
-          isOpen={showRoutineSelectModal}
-          onClose={() => setShowRoutineSelectModal(false)}
-          routineHistory={routineHistory}
-          selectedRoutine={selectedRoutine}
-          setSelectedRoutine={setSelectedRoutine}
-          modes={modes}
-          currentMode={currentMode}
-          setCurrentMode={setCurrentMode}
-          format={format}
-          setFormat={setFormat}
-          onClickStart={() => setRoutineStarted(true)}
-          isMobile={isMobile}
-          setRoutines={setRoutines}
-          exerciseCounts={exerciseCounts}
-        />
+        {showRoutineSelectModal && (
+          <RoutineSelect
+            debug={debug}
+            exercises={exercises}
+            routines={routines}
+            currentRoutine={currentRoutine}
+            setCurrentRoutine={setCurrentRoutine}
+            isOpen={showRoutineSelectModal}
+            onClose={() => setShowRoutineSelectModal(false)}
+            routineHistory={routineHistory}
+            selectedRoutine={selectedRoutine}
+            setSelectedRoutine={setSelectedRoutine}
+            modes={modes}
+            currentMode={currentMode}
+            setCurrentMode={setCurrentMode}
+            format={format}
+            setFormat={setFormat}
+            onClickStart={() => setRoutineStarted(true)}
+            isMobile={isMobile}
+            setRoutines={setRoutines}
+            exerciseCounts={exerciseCounts}
+          />
+        )}
       </AppBar>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
@@ -351,6 +355,8 @@ function Index() {
                             routinePaused={routinePaused}
                             selectedWeight={selectedWeight}
                             setSelectedWeight={setSelectedWeight}
+                            setMultipliedWeight={setMultipliedWeight}
+                            setWeightMultiplier={setWeightMultiplier}
                           />
                         </Paper>
                       </Box>
@@ -465,6 +471,8 @@ function Index() {
           setTimers={setTimers}
           selectedWeight={selectedWeight}
           selectedReps={selectedReps}
+          multipliedWeight={multipliedWeight}
+          weightMultiplier={weightMultiplier}
         />
       )}
       {currentMode.name === "timer" && (
@@ -494,6 +502,8 @@ function Index() {
           setSet={setSet}
           timers={timers}
           setTimers={setTimers}
+          multipliedWeight={multipliedWeight}
+          weightMultiplier={weightMultiplier}
         />
       )}
     </ThemeProvider>

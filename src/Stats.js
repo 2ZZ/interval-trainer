@@ -42,9 +42,10 @@ export default function Stats(props) {
   }, [routineFinished]);
 
   React.useEffect(() => {
-    const counts = countExercisesAcrossHistory(routineHistory);
-    log("here");
-    setExerciseCounts(counts);
+    if (routineHistory) {
+      const counts = countExercisesAcrossHistory(routineHistory);
+      setExerciseCounts(counts);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(routineHistory)]);
 

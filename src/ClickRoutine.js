@@ -20,6 +20,8 @@ export default function ClickRoutine({
   setTimers,
   selectedWeight,
   selectedReps,
+  multipliedWeight,
+  weightMultiplier,
 }) {
   const log = createLogger(debug);
   const interval = useRef(null);
@@ -158,7 +160,9 @@ export default function ClickRoutine({
             exerciseName:
               currentRoutine.spec.exercises[currentExercise.index - 1],
             set: currentExercise.currentSet,
-            weight: selectedWeight,
+            weight: multipliedWeight,
+            originalWeight: selectedWeight,
+            weightMultiplier: weightMultiplier,
             reps: selectedReps,
           },
         ],
