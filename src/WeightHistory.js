@@ -31,9 +31,9 @@ export default function WeightHistory(props) {
   useEffect(() => {
     function getRecommendedWeight(routineName, exerciseIndex, exerciseName) {
       // Check if we have a weight for this exercise in the current session
-      if (sessionWeights[exerciseName]) {
-        return sessionWeights[exerciseName];
-      }
+      // if (sessionWeights[exerciseName]) {
+      //   return sessionWeights[exerciseName];
+      // }
 
       if (!routineHistory || routineHistory.length === 0) {
         logger("No weight history found");
@@ -42,19 +42,19 @@ export default function WeightHistory(props) {
 
       let previousWeight = null;
 
-      // Search for the exercise name across all routines
-      for (let i = 0; i < routineHistory.length; i++) {
-        const routine = routineHistory[i];
-        if (routine.History) {
-          const historyEntry = routine.History.find(
-            (entry) => entry.exerciseName === exerciseName
-          );
-          if (historyEntry) {
-            previousWeight = historyEntry.originalWeight || historyEntry.weight;
-            break;
-          }
-        }
-      }
+      // // Search for the exercise name across all routines
+      // for (let i = 0; i < routineHistory.length; i++) {
+      //   const routine = routineHistory[i];
+      //   if (routine.History) {
+      //     const historyEntry = routine.History.find(
+      //       (entry) => entry.exerciseName === exerciseName
+      //     );
+      //     if (historyEntry) {
+      //       previousWeight = historyEntry.originalWeight || historyEntry.weight;
+      //       break;
+      //     }
+      //   }
+      // }
 
       // If not found, fall back to the original logic
       if (!previousWeight) {

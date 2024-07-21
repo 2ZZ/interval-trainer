@@ -57,10 +57,10 @@ export default function getRoutines(format) {
       exercises: [
         "overhead-press",
         "hammer-curl",
-        "one-leg-dumbbell-squat",
+        "one-leg-dumbbell-squat-left",
+        "one-leg-dumbbell-squat-right",
         "left-hand-row",
         "right-hand-row",
-        "dumbbell-stiff-legged-deadlift",
       ],
     },
     {
@@ -212,8 +212,8 @@ export default function getRoutines(format) {
         "diamond-pushups",
         "dumbbell-crunch",
         "calf-raises",
-        "one-leg-dumbbell-squat",
-        "dumbbell-lateral-raise",
+        "one-leg-dumbbell-squat-left",
+        "one-leg-dumbbell-squat-right",
       ],
     },
     {
@@ -299,6 +299,23 @@ export default function getRoutines(format) {
         "dumbbell-row-bilateral",
         "dumbbell-heels-up-goblet-squat",
         "dumbbell-laying-reverse-fly",
+      ],
+    },
+    {
+      id: 19,
+      name: "#6",
+      sets: 4,
+      time: {
+        work: 40,
+        rest: 20,
+      },
+      exercises: [
+        "dumbbell-laying-reverse-fly",
+        "wood-chopper",
+        "dumbbell-neutral-overhead-press",
+        "calf-raises",
+        "one-leg-dumbbell-squat-left",
+        "one-leg-dumbbell-squat-right",
       ],
     },
     {

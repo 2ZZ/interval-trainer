@@ -82,6 +82,7 @@ export default function Stats(props) {
   function generateStatsObj() {
     return {
       Date: routineStartTime,
+      FinishedDate: setDate(),
       Routine: currentRoutine.spec.name,
       "Percent completed": currentRoutine.percentComplete + "%",
       "Paused time": getHumanTime(timers.paused),
