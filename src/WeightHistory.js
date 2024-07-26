@@ -30,10 +30,10 @@ export default function WeightHistory(props) {
 
   useEffect(() => {
     function getRecommendedWeight(routineName, exerciseIndex, exerciseName) {
-      // Check if we have a weight for this exercise in the current session
-      // if (sessionWeights[exerciseName]) {
-      //   return sessionWeights[exerciseName];
-      // }
+      // If changed manually by clicking button
+      if (sessionWeights[exerciseName]) {
+        return sessionWeights[exerciseName];
+      }
 
       if (!routineHistory || routineHistory.length === 0) {
         logger("No weight history found");
