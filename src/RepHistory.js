@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { createLogger } from "./utils";
 
@@ -13,23 +13,43 @@ function RepHistory(props) {
     routineHistory,
   } = props;
 
+  const currentExerciseName =
+    currentRoutine.spec.exercises[currentExercise.index - 1];
+
   const log = createLogger(debug);
+
   const increment = () => {
-    log("Incrementing selectedReps to: " + (selectedReps + 1));
-    setSelectedReps(selectedReps + 1);
+    const newSelectedReps = selectedReps + 1;
+    log("Incrementing selectedReps to: " + newSelectedReps);
+    setSessionReps((prevSessionReps) => ({
+      ...prevSessionReps,
+      [currentExerciseName]: newSelectedReps,
+    }));
+    setSelectedReps(newSelectedReps);
   };
 
   const decrement = () => {
     if (selectedReps > 0) {
-      setSelectedReps(selectedReps - 1);
+      const newSelectedReps = selectedReps - 1;
+      log("Decrementing selectedReps to: " + newSelectedReps);
+      setSessionReps((prevSessionReps) => ({
+        ...prevSessionReps,
+        [currentExerciseName]: newSelectedReps,
+      }));
+      setSelectedReps(newSelectedReps);
     }
   };
 
   const exerciseName = currentRoutine.spec.exercises[currentExercise.index - 1];
   const exerciseDetails = exercises.find((e) => e.name === exerciseName);
+  const [sessionReps, setSessionReps] = useState({});
 
   useEffect(() => {
     function getMostRecentReps(routineName, currentExerciseIndex) {
+      if (sessionReps[exerciseName]) {
+        return sessionReps[exerciseName];
+      }
+
       if (!routineHistory || routineHistory.length === 0) {
         log("No rep history found");
         return null;

@@ -102,18 +102,18 @@ export default function WeightHistory(props) {
     setWeightMultiplier(weightMultiplier);
     logger("Recommended weight is: " + recommendedWeight);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentRoutine.spec.name, currentExercise, sessionWeights]);
+  }, [currentRoutine.spec.name, currentExercise]);
 
   const handleWeightSelect = (weight) => {
     const currentExerciseName =
       currentRoutine.spec.exercises[currentExercise.index - 1];
-    setSelectedWeight(weight);
     setMultipliedWeight(weight * weightMultiplier);
     setWeightMultiplier(weightMultiplier);
     setSessionWeights((prevWeights) => ({
       ...prevWeights,
       [currentExerciseName]: weight,
     }));
+    setSelectedWeight(weight);
   };
 
   const handleMultiplyWeight = (newMultiplier) => {
