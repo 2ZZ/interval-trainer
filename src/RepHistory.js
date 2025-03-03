@@ -45,41 +45,39 @@ function RepHistory(props) {
   const [sessionReps, setSessionReps] = useState({});
 
   useEffect(() => {
-    function getMostRecentReps(routineName, currentExerciseIndex) {
-      if (sessionReps[exerciseName]) {
+    function getRecommendedReps(routineName, currentExerciseIndex) {
+      if (sessionReps.hasOwnProperty(exerciseName)) {
         return sessionReps[exerciseName];
       }
 
-      if (!routineHistory || routineHistory.length === 0) {
+      if (routineHistory && routineHistory.length > 0) {
         log("No rep history found");
-        return null;
-      }
 
-      for (let i = 0; i < routineHistory.length; i++) {
-        const routine = routineHistory[i];
+        for (let i = 0; i < routineHistory.length; i++) {
+          const routine = routineHistory[i];
 
-        if (routine.Routine === routineName && routine.History) {
-          const historyEntry = routine.History.find(
-            (entry) => entry.exerciseIndex === currentExerciseIndex
-          );
-          if (historyEntry) {
-            log("Found rep history entry:" + JSON.stringify(historyEntry));
-            return historyEntry.reps || 10;
+          if (routine.Routine === routineName && routine.History) {
+            const historyEntry = routine.History.find(
+              (entry) => entry.exerciseIndex === currentExerciseIndex
+            );
+            if (historyEntry) {
+              log("Found rep history entry:" + JSON.stringify(historyEntry));
+              return historyEntry.reps || 10;
+            }
           }
         }
       }
 
       log("No matching rep history entry found");
-      return null;
+      return exerciseDetails?.defaults?.reps || 0;
     }
+
     const exerciseName =
       currentRoutine.spec.exercises[currentExercise.index - 1];
     const exerciseDetails = exercises.find((e) => e.name === exerciseName);
 
     setSelectedReps(
-      getMostRecentReps(currentRoutine.spec.name, currentExercise.index) ||
-        exerciseDetails?.defaults?.reps ||
-        0
+      getRecommendedReps(currentRoutine.spec.name, currentExercise.index)
     );
     log("selectedReps is: " + selectedReps);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -158,10 +158,11 @@ export default function History(props) {
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.History
-                    ? row.History.reduce(
-                        (acc, curr) => acc + parseInt(curr.weight, 10),
-                        0
-                      )
+                    ? row.History.reduce((acc, curr) => {
+                        // Use nullish coalescing operator to default null/undefined to 0
+                        const weight = curr.weight ?? 0;
+                        return acc + parseInt(weight, 10);
+                      }, 0)
                     : "?"}
                   KG
                 </StyledTableCell>

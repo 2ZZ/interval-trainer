@@ -12,7 +12,7 @@ import {
 import { createLogger } from "./utils";
 function CreateRoutine(props) {
   const { setRoutines, exercises, currentMode, debug, exerciseCounts } = props;
-  const [numExercises, setNumExercises] = useState(6);
+  const [numExercises, setNumExercises] = useState(4);
   const [routineExercises, setRoutineExercises] = useState([]);
   const [sets, setSets] = useState(4);
   const [workTime, setWorkTime] = useState(40);

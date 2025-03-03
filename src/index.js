@@ -57,7 +57,7 @@ function Index() {
   const [selectedReps, setSelectedReps] = useState(10);
 
   const [multipliedWeight, setMultipliedWeight] = useState(0);
-  const [weightMultiplier, setWeightMultiplier] = useState(2);
+  const [weightMultiplier, setWeightMultiplier] = useState({});
   const [exerciseCounts, setExerciseCounts] = useState({});
 
   const [routineReset, setRoutineReset] = useState(false);
@@ -356,6 +356,7 @@ function Index() {
                             selectedWeight={selectedWeight}
                             setSelectedWeight={setSelectedWeight}
                             setMultipliedWeight={setMultipliedWeight}
+                            weightMultiplier={weightMultiplier}
                             setWeightMultiplier={setWeightMultiplier}
                           />
                         </Paper>
